@@ -266,11 +266,13 @@ namespace TranZadIA
                     {
                         if (C[i, j].Delta.ToString() != gridDelta.Rows[kN].Cells[0].Value.ToString())
                         {
-                            gridDelta.Rows[kN].Cells[0].Style.BackColor = Color.Yellow;
+                            gridDelta.Rows[kN].HeaderCell.Style.BackColor = Color.Yellow;
+                            //gridDelta.Rows[kN].Cells[0].Style.BackColor = Color.Yellow;
                         }
                         else
                         {
-                            gridDelta.Rows[kN].Cells[0].Style.BackColor = Color.White;
+                            gridDelta.Rows[kN].HeaderCell.Style.BackColor = Color.White;
+                            //gridDelta.Rows[kN].Cells[0].Style.BackColor = Color.White;
                         }
                         kN++;
                     }
@@ -294,7 +296,7 @@ namespace TranZadIA
                 }
             }
 
-            
+
 
 
 
@@ -318,45 +320,28 @@ namespace TranZadIA
 
         private void solveTZ()
         {
-            countTable = 0;
-            do
-            {
-                if (NotOptimal())
-                {
-                    getQ();
-                }
-                GetUVDelta();
-                if (!NotOptimal())
-                {
-                    btnSolve.Enabled = true;
-                    lblOptPlan.Visible = true;
-                }
-                PrintQmin();
-                SaveResult();
-
-                clrQLabel();
-                if (NotOptimal())
-                {
-                    gridDelta.RowCount = 0;
-                    BetterOptimal();
-                    printZ();
-                    CountStep++;
-                }
-
-            } while (NotOptimal());
-
+            GetUVDelta();
             if (NotOptimal())
             {
                 getQ();
             }
-            GetUVDelta();
-            if (!NotOptimal())
-            {
-                btnSolve.Enabled = true;
-                lblOptPlan.Visible = true;
-            }
-            PrintQmin();
             SaveResult();
+            while (NotOptimal())
+            {
+                getQ();
+                //gridDelta.RowCount = 0;
+                BetterOptimal();
+                printZ();
+                PrintQmin();
+                CountStep++;
+
+                GetUVDelta();
+                SaveResult();
+            }
+            btnSolve.Enabled = true;
+            lblOptPlan.Visible = true;
+
+            countTable = 0;
             PrintPlanTable(1);
         }
         private void SaveResult()
@@ -538,69 +523,6 @@ namespace TranZadIA
                     lblQ[i, j].Text = "";
                 }
             }
-        }
-        private void PrintUVDelta()
-        {
-            //GetUVDelta();
-            //gridDelta.Visible = true;
-            //////инициализируем таблицу U, V
-            ////gridSupport.RowCount = n + 1;
-            ////gridSupport.ColumnCount = m + 1;
-            ////gridSupport.Rows[n].HeaderCell.Value = "Vj";
-            ////gridSupport.Columns[m].HeaderText = "Ui";
-            ////gridSupport.Rows[0].Cells[m].Value = 0.ToString();
-
-            //for (int i = 0; i < n; i++)
-            //{
-            //    //gridSupport.Rows[i].Cells[m].Value = "\nU" + (i + 1) + " = " + U[i];
-            //    //gridSupport.Rows[i].Cells[m].Value = U[i];
-            //}
-            //for (int j = 0; j < m; j++)
-            //{
-
-            //    //gridSupport.Rows[n].Cells[j].Value = "\nV" + (j + 1) + " = " + V[j];
-            //    //gridSupport.Rows[n].Cells[j].Value = V[j];
-            //}
-            //gridSupport.Rows[n].Cells[m].Value = "";
-
-            //считаем колличество пустых клеток
-            //int k = 0;
-            //for (int i = 0; i < n; i++)
-            //{
-            //    for (int j = 0; j < m; j++)
-            //    {
-            //        if (C[i, j].Value == 0)
-            //        {
-            //            //колличество пустых клеток
-            //            k++;
-            //        }
-            //    }
-            //}
-
-            ////вывод дельт
-            //gridDelta.RowCount = k + 1;
-            //gridDelta.RowHeadersWidth = 85;
-            //k = 0;
-            //int deltaMax = 0;
-            //for (int i = 0; i < n; i++)
-            //{
-            //    for (int j = 0; j < m; j++)
-            //    {
-            //        if (C[i, j].Value == 0)
-            //        {
-            //            gridDelta.Rows[k].HeaderCell.Value = "∆[" + (i + 1) + "," + (j + 1) + "]";
-            //            gridDelta.Rows[k].Cells[0].Value = (C[i, j].Delta).ToString();
-
-            //            if (C[i, j].Delta > deltaMax)
-            //            {
-            //                deltaMax = U[i] + V[j] - C[i, j].Index;
-            //            }
-            //            k++;
-            //        }
-            //    }
-            //}
-            //gridDelta.Rows[k].HeaderCell.Value = "Max";
-            //gridDelta.Rows[k].Cells[0].Value = (deltaMax == 0 ? "" : deltaMax.ToString());
         }
         private void GetUVDelta()
         {
@@ -940,7 +862,7 @@ namespace TranZadIA
         {   //проверка на оптимальность
             int nMax = -nVeryLargeNumber;
             int x;
-            GetUVDelta();
+            //GetUVDelta();
 
             for (int i = 0; i < n; i++)
             {
@@ -1218,6 +1140,5 @@ namespace TranZadIA
             Form training = new TrainingForm();
             training.ShowDialog();
         }
-
     }
 }
