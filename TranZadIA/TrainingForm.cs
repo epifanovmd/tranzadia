@@ -17,6 +17,9 @@ namespace TranZadIA
         {
             InitializeComponent();
 
+            NextBtn.Visible = false;
+            ViewDeltaBtn.Visible = false;
+
 
             RowCount.Value = 3;
             ColumnCount.Value = 2;
@@ -146,7 +149,7 @@ namespace TranZadIA
 
                     try
                     {
-                        if (lblQ[i, j].Text != C[i, j].Q || (
+                        if (lblQ[i, j].Text != ((C[i, j].Q == null) ? "" : C[i, j].Q) || (
                              (gridSupport.Rows[i].Cells[j].Value.ToString() == "--") ? 0 != C[i, j].Value : gridSupport.Rows[i].Cells[j].Value.ToString() != C[i, j].Value.ToString()))
                         {
                             gridSupport.Rows[i].Cells[j].Style.BackColor = Color.Yellow;
@@ -169,12 +172,6 @@ namespace TranZadIA
 
                 }
             }
-
-
-
-
-
-
             for (int i = 0; i < n; i++)
             {
                 if (Convert.ToInt32(gridSupport.Rows[i].Cells[m].Value) != U[i])
@@ -201,14 +198,9 @@ namespace TranZadIA
                     gridSupport.Rows[n].Cells[j].Style.BackColor = Color.White;
                 }
             }
-
-
-
-
-
-            for (int i = 0; i < n+1; i++)
+            for (int i = 0; i < n + 1; i++)
             {
-                for (int j = 0; j < m+1; j++)
+                for (int j = 0; j < m + 1; j++)
                 {
 
                     if (gridSupport.Rows[i].Cells[j].Style.BackColor == Color.Yellow)
@@ -222,19 +214,105 @@ namespace TranZadIA
             }
 
 
-            if (countTable+1 != Csave.Length)
+
+
+
+
+
+
+            //считаем колличество пустых клеток
+            int k = 0;
+            for (int i = 0; i < n; i++)
             {
-                countTable++;
-                PrintPlanTable(countTable + 1);
+                for (int j = 0; j < m; j++)
+                {
+                    if (C[i, j].Value == 0)
+                    {
+                        //колличество пустых клеток
+                        k++;
+                    }
+                }
             }
-            else
+            gridDelta.RowCount = k;
+            gridDelta.RowHeadersWidth = 85;
+            k = 0;
+            for (int i = 0; i < n; i++)
             {
-                lblOptPlan.Visible = true;
+                for (int j = 0; j < m; j++)
+                {
+                    if (C[i, j].Value == 0)
+                    {
+                        gridDelta.Rows[k].HeaderCell.Value = "∆[" + (i + 1) + "," + (j + 1) + "]";
+                        gridDelta.Rows[k].Cells[0].Value = "";
+                        k++;
+                    }
+                }
             }
+            NextBtn.Visible = false;
+            ViewDeltaBtn.Visible = true;
+        }
+        private void ViewDeltaBtn_Click(object sender, EventArgs e)
+        {
+
+
+
+            int kN = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (C[i, j].Value == 0)
+                    {
+                        if (C[i, j].Delta.ToString() != gridDelta.Rows[kN].Cells[0].Value.ToString())
+                        {
+                            gridDelta.Rows[kN].Cells[0].Style.BackColor = Color.Yellow;
+                        }
+                        else
+                        {
+                            gridDelta.Rows[kN].Cells[0].Style.BackColor = Color.White;
+                        }
+                        kN++;
+                    }
+                }
+            }
+
+
+            kN = 0;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (C[i, j].Value == 0)
+                    {
+                        if (C[i, j].Delta.ToString() != gridDelta.Rows[kN].Cells[0].Value.ToString())
+                        {
+                            return;
+                        }
+                        kN++;
+                    }
+                }
+            }
+
             
 
 
 
+
+            if (countTable + 1 != Csave.Length)
+            {
+                countTable++;
+                PrintPlanTable(countTable + 1);
+                gridDelta.RowCount = 0;
+                NextBtn.Visible = true;
+                ViewDeltaBtn.Visible = false;
+            }
+            else
+            {
+                lblOptPlan.Visible = true;
+                NextBtn.Visible = false;
+                ViewDeltaBtn.Visible = false;
+            }
         }
 
 
@@ -247,7 +325,7 @@ namespace TranZadIA
                 {
                     getQ();
                 }
-                PrintUVDelta();
+                GetUVDelta();
                 if (!NotOptimal())
                 {
                     btnSolve.Enabled = true;
@@ -271,7 +349,7 @@ namespace TranZadIA
             {
                 getQ();
             }
-            PrintUVDelta();
+            GetUVDelta();
             if (!NotOptimal())
             {
                 btnSolve.Enabled = true;
@@ -463,66 +541,66 @@ namespace TranZadIA
         }
         private void PrintUVDelta()
         {
-            GetUVDelta();
-            gridDelta.Visible = true;
-            ////инициализируем таблицу U, V
-            //gridSupport.RowCount = n + 1;
-            //gridSupport.ColumnCount = m + 1;
-            //gridSupport.Rows[n].HeaderCell.Value = "Vj";
-            //gridSupport.Columns[m].HeaderText = "Ui";
-            //gridSupport.Rows[0].Cells[m].Value = 0.ToString();
+            //GetUVDelta();
+            //gridDelta.Visible = true;
+            //////инициализируем таблицу U, V
+            ////gridSupport.RowCount = n + 1;
+            ////gridSupport.ColumnCount = m + 1;
+            ////gridSupport.Rows[n].HeaderCell.Value = "Vj";
+            ////gridSupport.Columns[m].HeaderText = "Ui";
+            ////gridSupport.Rows[0].Cells[m].Value = 0.ToString();
 
-            for (int i = 0; i < n; i++)
-            {
-                //gridSupport.Rows[i].Cells[m].Value = "\nU" + (i + 1) + " = " + U[i];
-                //gridSupport.Rows[i].Cells[m].Value = U[i];
-            }
-            for (int j = 0; j < m; j++)
-            {
+            //for (int i = 0; i < n; i++)
+            //{
+            //    //gridSupport.Rows[i].Cells[m].Value = "\nU" + (i + 1) + " = " + U[i];
+            //    //gridSupport.Rows[i].Cells[m].Value = U[i];
+            //}
+            //for (int j = 0; j < m; j++)
+            //{
 
-                //gridSupport.Rows[n].Cells[j].Value = "\nV" + (j + 1) + " = " + V[j];
-                //gridSupport.Rows[n].Cells[j].Value = V[j];
-            }
+            //    //gridSupport.Rows[n].Cells[j].Value = "\nV" + (j + 1) + " = " + V[j];
+            //    //gridSupport.Rows[n].Cells[j].Value = V[j];
+            //}
             //gridSupport.Rows[n].Cells[m].Value = "";
 
             //считаем колличество пустых клеток
-            int k = 0;
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    if (C[i, j].Value == 0)
-                    {
-                        //колличество пустых клеток
-                        k++;
-                    }
-                }
-            }
+            //int k = 0;
+            //for (int i = 0; i < n; i++)
+            //{
+            //    for (int j = 0; j < m; j++)
+            //    {
+            //        if (C[i, j].Value == 0)
+            //        {
+            //            //колличество пустых клеток
+            //            k++;
+            //        }
+            //    }
+            //}
 
-            //вывод дельт
-            gridDelta.RowCount = k + 1;
-            gridDelta.RowHeadersWidth = 85;
-            k = 0;
-            int deltaMax = 0;
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    if (C[i, j].Value == 0)
-                    {
-                        gridDelta.Rows[k].HeaderCell.Value = "∆[" + (i + 1) + "," + (j + 1) + "]";
-                        gridDelta.Rows[k].Cells[0].Value = (C[i, j].Delta).ToString();
+            ////вывод дельт
+            //gridDelta.RowCount = k + 1;
+            //gridDelta.RowHeadersWidth = 85;
+            //k = 0;
+            //int deltaMax = 0;
+            //for (int i = 0; i < n; i++)
+            //{
+            //    for (int j = 0; j < m; j++)
+            //    {
+            //        if (C[i, j].Value == 0)
+            //        {
+            //            gridDelta.Rows[k].HeaderCell.Value = "∆[" + (i + 1) + "," + (j + 1) + "]";
+            //            gridDelta.Rows[k].Cells[0].Value = (C[i, j].Delta).ToString();
 
-                        if (C[i, j].Delta > deltaMax)
-                        {
-                            deltaMax = U[i] + V[j] - C[i, j].Index;
-                        }
-                        k++;
-                    }
-                }
-            }
-            gridDelta.Rows[k].HeaderCell.Value = "Max";
-            gridDelta.Rows[k].Cells[0].Value = (deltaMax == 0 ? "" : deltaMax.ToString());
+            //            if (C[i, j].Delta > deltaMax)
+            //            {
+            //                deltaMax = U[i] + V[j] - C[i, j].Index;
+            //            }
+            //            k++;
+            //        }
+            //    }
+            //}
+            //gridDelta.Rows[k].HeaderCell.Value = "Max";
+            //gridDelta.Rows[k].Cells[0].Value = (deltaMax == 0 ? "" : deltaMax.ToString());
         }
         private void GetUVDelta()
         {
@@ -1100,6 +1178,8 @@ namespace TranZadIA
         }
         private void btnSolve_Click(object sender, EventArgs e)
         {
+            NextBtn.Visible = true;
+            ViewDeltaBtn.Visible = false;
             try
             {
                 foreach (var item in lblQ)
@@ -1138,5 +1218,6 @@ namespace TranZadIA
             Form training = new TrainingForm();
             training.ShowDialog();
         }
+
     }
 }
