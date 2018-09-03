@@ -19,7 +19,8 @@ namespace TranZadIA
 
             NextBtn.Visible = false;
             ViewDeltaBtn.Visible = false;
-
+            txBZ.Visible = false;
+            lblSum.Visible = false;
 
             RowCount.Value = 3;
             ColumnCount.Value = 2;
@@ -131,13 +132,9 @@ namespace TranZadIA
                 }
             }
         }
-
-
-
         public static int countTable = 0;
         private void button1_Click_1(object sender, EventArgs e)
         {
-
             U = (int[])Usave[countTable];
             V = (int[])Vsave[countTable];
             C = (Element[,])Csave[countTable];
@@ -146,7 +143,6 @@ namespace TranZadIA
             {
                 for (int j = 0; j < m; j++)
                 {
-
                     try
                     {
                         if (lblQ[i, j].Text != ((C[i, j].Q == null) ? "" : C[i, j].Q) || (
@@ -169,7 +165,6 @@ namespace TranZadIA
                         lblOptPlan.Visible = false;
                         //MessageBox.Show("Не все клетки заполнены");
                     }
-
                 }
             }
             for (int i = 0; i < n; i++)
@@ -202,24 +197,13 @@ namespace TranZadIA
             {
                 for (int j = 0; j < m + 1; j++)
                 {
-
                     if (gridSupport.Rows[i].Cells[j].Style.BackColor == Color.Yellow)
                     {
                         lblOptPlan.Visible = false;
                         return;
                     }
-
-
                 }
             }
-
-
-
-
-
-
-
-
             //считаем колличество пустых клеток
             int k = 0;
             for (int i = 0; i < n; i++)
@@ -250,14 +234,14 @@ namespace TranZadIA
             }
             NextBtn.Visible = false;
             ViewDeltaBtn.Visible = true;
+            txBZ.Visible = true;
+            lblSum.Visible = true;
+            lblSum.Text = "Z =";
+            txBZ.Text = "";
         }
         private void ViewDeltaBtn_Click(object sender, EventArgs e)
         {
-
-
-
             int kN = 0;
-
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
@@ -278,8 +262,6 @@ namespace TranZadIA
                     }
                 }
             }
-
-
             kN = 0;
             for (int i = 0; i < n; i++)
             {
@@ -295,12 +277,29 @@ namespace TranZadIA
                     }
                 }
             }
+            //считаем и выводим сумму
+            int Z = 0;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (C[i, j].Value == -1)
+                        Z += C[i, j].Index * (C[i, j].Value + 1);
+                    else
+                        Z += C[i, j].Index * C[i, j].Value;
+                }
+            }
+            //lblSum.Text = "Сумма Z = " + Z.ToString();
 
-
-
-
-
-
+            if (txBZ.Text != Z.ToString())
+            {
+                txBZ.BackColor = Color.Yellow;
+                return;
+            }
+            else
+            {
+                txBZ.BackColor = Color.White;
+            }
             if (countTable + 1 != Csave.Length)
             {
                 countTable++;
@@ -308,16 +307,19 @@ namespace TranZadIA
                 gridDelta.RowCount = 0;
                 NextBtn.Visible = true;
                 ViewDeltaBtn.Visible = false;
+                txBZ.Visible = false;
+                lblSum.Visible = false;
             }
             else
             {
+                lblSum.Text = "Z = " + Z.ToString();
                 lblOptPlan.Visible = true;
                 NextBtn.Visible = false;
                 ViewDeltaBtn.Visible = false;
+                txBZ.Visible = false;
+                lblSum.Visible = true;
             }
         }
-
-
         private void solveTZ()
         {
             GetUVDelta();
@@ -331,8 +333,8 @@ namespace TranZadIA
                 getQ();
                 //gridDelta.RowCount = 0;
                 BetterOptimal();
-                printZ();
-                PrintQmin();
+                //printZ();
+                //PrintQmin();
                 CountStep++;
 
                 GetUVDelta();
@@ -703,7 +705,7 @@ namespace TranZadIA
                 catch { }
             }
             //PrintPlan();
-            printZ();
+            //printZ();
         }
         private void MetodMinElement()
         {
@@ -856,7 +858,7 @@ namespace TranZadIA
                 indNull++;
             }
             //PrintPlan();
-            printZ();
+            //printZ();
         }
         private bool NotOptimal()
         {   //проверка на оптимальность
@@ -1102,6 +1104,9 @@ namespace TranZadIA
         {
             NextBtn.Visible = true;
             ViewDeltaBtn.Visible = false;
+            txBZ.Visible = false;
+            lblSum.Visible = false;
+            lblSum.Text = "Z =";
             try
             {
                 foreach (var item in lblQ)
@@ -1134,11 +1139,6 @@ namespace TranZadIA
                 MetodMinElement();
             }
             solveTZ();
-        }
-        private void тренажерТЗToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Form training = new TrainingForm();
-            training.ShowDialog();
         }
     }
 }

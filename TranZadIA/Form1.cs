@@ -17,8 +17,6 @@ namespace TranZadIA
         {
             InitializeComponent();
             RowColCount_ValueChanged(null,null);
-            Form frr = new TrainingForm();
-            frr.ShowDialog();
    }
         public struct Element
         {
@@ -67,7 +65,6 @@ namespace TranZadIA
         //ввод данных в начале
         private void RowColCount_ValueChanged( object sender,EventArgs e )
         {
-            
             try
             {
                 n = Convert.ToInt32(RowCount.Value);
@@ -340,8 +337,6 @@ namespace TranZadIA
                     V[i] = C[0,i].Index;
                 }
             }
-
-  
 
             //считаем U и V 
             bool flag = true;
@@ -1019,7 +1014,6 @@ namespace TranZadIA
                 }
             }
         }
-
         private void тренажерТЗToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form training = new TrainingForm();
