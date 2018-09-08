@@ -17,8 +17,95 @@ namespace TranZadTwoIA
         public TranZadTwo()
         {
             InitializeComponent();
-            RowColCount_ValueChanged(null,null);
-   }
+            RowColCount_ValueChanged(null, null);
+
+
+
+
+
+
+            RowCount.Value = 3;
+            ColumnCount.Value = 3;
+
+            gridA.RowCount = 3;
+            gridA.Rows[0].Cells[0].Value = 247;
+            gridA.Rows[1].Cells[0].Value = 382;
+            gridA.Rows[2].Cells[0].Value = 249;
+
+
+
+            gridB.RowCount = 3;
+            gridB.Rows[0].Cells[0].Value = 542;
+            gridB.Rows[1].Cells[0].Value = 179;
+            gridB.Rows[2].Cells[0].Value = 203;
+
+
+
+            gridD.RowCount = 3;
+            gridD.Rows[0].Cells[0].Value = 458;
+            gridD.Rows[1].Cells[0].Value = 321;
+            gridD.Rows[2].Cells[0].Value = 387;
+
+
+            gridCBig.RowCount = 3;
+            gridCBig.ColumnCount = 3;
+            gridCBig.Rows[0].Cells[0].Value = 6;
+            gridCBig.Rows[1].Cells[0].Value = 8;
+            gridCBig.Rows[2].Cells[0].Value = 2;
+
+
+            gridCBig.Rows[0].Cells[1].Value = 4;
+            gridCBig.Rows[1].Cells[1].Value = 3;
+            gridCBig.Rows[2].Cells[1].Value = 7;
+
+            gridCBig.Rows[0].Cells[2].Value = 8;
+            gridCBig.Rows[1].Cells[2].Value = 5;
+            gridCBig.Rows[2].Cells[2].Value = 4;
+
+
+
+            gridCSmall.RowCount = 3;
+            gridCSmall.ColumnCount = 3;
+            gridCSmall.Rows[0].Cells[0].Value = 28;
+            gridCSmall.Rows[1].Cells[0].Value = 25;
+            gridCSmall.Rows[2].Cells[0].Value = 24;
+
+
+            gridCSmall.Rows[0].Cells[1].Value = 27;
+            gridCSmall.Rows[1].Cells[1].Value = 23;
+            gridCSmall.Rows[2].Cells[1].Value = 24;
+
+            gridCSmall.Rows[0].Cells[2].Value = 12;
+            gridCSmall.Rows[1].Cells[2].Value = 18;
+            gridCSmall.Rows[2].Cells[2].Value = 26;
+
+
+
+
+
+        }
+
+        class Person
+        {
+            private int age;
+
+            public int Age
+            {
+                set
+                {
+                    if (value < 18)
+                    {
+                        Console.WriteLine("Возраст должен быть больше 17");
+                    }
+                    else
+                    {
+                        age = value;
+                    }
+                }
+                get { return age; }
+            }
+        }
+
         public struct Element
         {
             public int Index1 { get; set; }
@@ -65,15 +152,15 @@ namespace TranZadTwoIA
         int numTable;
 
         //ввод данных в начале
-        private void RowColCount_ValueChanged( object sender,EventArgs e )
+        private void RowColCount_ValueChanged(object sender, EventArgs e)
         {
             try
             {
                 n = Convert.ToInt32(RowCount.Value);
-                aSupply = new int[n];
+                aSupply = new int[n+m];
                 m = Convert.ToInt32(ColumnCount.Value);
-                aDemand = new int[m];
-                C = new Element[n,m];
+                aDemand = new int[m+m];
+                C = new Element[n+m, m+m];
                 gridA.RowCount = n;
                 gridA.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
 
@@ -85,8 +172,8 @@ namespace TranZadTwoIA
                 gridCBig.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
                 gridCBig.Columns[m - 1].HeaderText = "D" + m.ToString();
 
-                gridStores.RowCount = m;
-                gridStores.Rows[m - 1].HeaderCell.Value = "D" + m.ToString();
+                gridD.RowCount = m;
+                gridD.Rows[m - 1].HeaderCell.Value = "D" + m.ToString();
 
 
 
@@ -138,7 +225,7 @@ namespace TranZadTwoIA
                 x++;
             }
         }
-        private void NextPlan( object sender,EventArgs e )
+        private void NextPlan(object sender, EventArgs e)
         {
             if (NotOptimal())
             {
@@ -159,16 +246,16 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    if (C[i,j].Q == "-Q")
+                    if (C[i, j].Q == "-Q")
                     {
-                        if (C[i,j].Value < nMin)
+                        if (C[i, j].Value < nMin)
                         {
-                            if (C[i,j].Value == -1)
+                            if (C[i, j].Value == -1)
                             {
                                 nMin = 0;
                             }
                             else
-                                nMin = C[i,j].Value;
+                                nMin = C[i, j].Value;
                         }
                     }
                 }
@@ -181,7 +268,7 @@ namespace TranZadTwoIA
             else
                 Qmin.Visible = false;
         }
-        private void UVDOut( object sender,EventArgs e )
+        private void UVDOut(object sender, EventArgs e)
         {
             UVDOutBtn.Enabled = false;
             NextPlanBtn.Enabled = true;
@@ -212,10 +299,10 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    if (C[i,j].Value == -1)
-                        Z += C[i,j].Index1 * (C[i,j].Value + 1);
+                    if (C[i, j].Value == -1)
+                        Z += C[i, j].Index1 * (C[i, j].Value + 1);
                     else
-                        Z += C[i,j].Index1 * C[i,j].Value;
+                        Z += C[i, j].Index1 * C[i, j].Value;
                 }
             }
             lblSum.Text = "Сумма Z = " + Z.ToString();
@@ -227,7 +314,7 @@ namespace TranZadTwoIA
             gridSupport.RowHeadersWidth = 80;
 
             gridSupport.TopLeftHeaderCell.Value = "X" + numTable.ToString();
-            gridDelta.TopLeftHeaderCell.Value = "X" + numTable.ToString();    
+            gridDelta.TopLeftHeaderCell.Value = "X" + numTable.ToString();
 
             if (NotOptimal())
             {
@@ -249,26 +336,26 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    if (C[i,j].Value != 0)
+                    if (C[i, j].Value != 0)
                     {
-                        if (C[i,j].Value == -1)
+                        if (C[i, j].Value == -1)
                         {
-                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                             gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-                            gridSupport.Rows[i].Cells[j].Value = ((C[i,j].Q == "") || (C[i,j].Q == null) ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n" + (C[i,j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + (C[i, j].Value + 1).ToString();
                         }
                         else
                         {
-                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                             gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-                            gridSupport.Rows[i].Cells[j].Value = ((C[i,j].Q == "") || (C[i,j].Q == null) ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n" + C[i,j].Value.ToString();
+                            gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + C[i, j].Value.ToString();
                         }
                     }
                     else
                     {
-                        gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                        gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                         gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-                        gridSupport.Rows[i].Cells[j].Value = ((C[i,j].Q == "") || (C[i,j].Q == null) ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n " + "--";
+                        gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n " + "--";
                     }
                 }
             }
@@ -301,7 +388,7 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    if (C[i,j].Value == 0)
+                    if (C[i, j].Value == 0)
                     {
                         //колличество пустых клеток
                         k++;
@@ -318,14 +405,14 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    if (C[i,j].Value == 0)
+                    if (C[i, j].Value == 0)
                     {
                         gridDelta.Rows[k].HeaderCell.Value = "∆[" + (i + 1) + "," + (j + 1) + "]";
-                        gridDelta.Rows[k].Cells[0].Value = (C[i,j].Delta).ToString();
+                        gridDelta.Rows[k].Cells[0].Value = (C[i, j].Delta).ToString();
 
-                        if (C[i,j].Delta > deltaMax)
+                        if (C[i, j].Delta > deltaMax)
                         {
-                            deltaMax = U[i] + V[j] - C[i,j].Index1;
+                            deltaMax = U[i] + V[j] - C[i, j].Index1;
                         }
                         k++;
                     }
@@ -348,10 +435,10 @@ namespace TranZadTwoIA
             //сносим с первой строчки индексы в V 
             for (int i = 0; i < m; i++)
             {
-                if (C[0,i].Value != 0)
+                if (C[0, i].Value != 0)
                 {
                     Vf[i] = true;
-                    V[i] = C[0,i].Index1;
+                    V[i] = C[0, i].Index1;
                 }
             }
 
@@ -364,19 +451,19 @@ namespace TranZadTwoIA
                 {
                     for (int j = 0; j < m; j++)
                     {
-                        if (C[i,j].Value != 0)
+                        if (C[i, j].Value != 0)
                         {
                             if (Vf[j] != false)
                             {
                                 Uf[i] = true;
-                                U[i] = Convert.ToInt32(C[i,j].Index1 - V[j]);
+                                U[i] = Convert.ToInt32(C[i, j].Index1 - V[j]);
                             }
                             else
                             {
                                 if (Uf[i] != false)
                                 {
                                     Vf[j] = true;
-                                    V[j] = Convert.ToInt32(C[i,j].Index1 - U[i]);
+                                    V[j] = Convert.ToInt32(C[i, j].Index1 - U[i]);
                                 }
                             }
                         }
@@ -401,125 +488,64 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    C[i,j].Delta = 0;
-                    if (C[i,j].Value == 0)
+                    C[i, j].Delta = 0;
+                    if (C[i, j].Value == 0)
                     {
-                        C[i,j].Delta = (U[i] + V[j] - C[i,j].Index1);
+                        C[i, j].Delta = (U[i] + V[j] - C[i, j].Index1);
                     }
                 }
             }
         }
-        private ArrayList FindPath( int u,int v )
+        private ArrayList FindPath(int u, int v)
         {
             ArrayList aPath = new ArrayList();
-            aPath.Add(new int[2] { u,v });
-            LookHorizontaly(ref aPath,u,v,u,v);
+            aPath.Add(new int[2] { u, v });
+            LookHorizontaly(ref aPath, u, v, u, v);
             return aPath;
         }
-        private bool LookHorizontaly( ref ArrayList aPath,int u,int v,int u1,int v1 )
+        private bool LookHorizontaly(ref ArrayList aPath, int u, int v, int u1, int v1)
         {
             for (int i = 0; i < m; i++)
             {
-                if (i != v && C[u,i].Value != 0)
+                if (i != v && C[u, i].Value != 0)
                 {
                     if (i == v1)
                     {
-                        aPath.Add(new int[2] { u,i });
+                        aPath.Add(new int[2] { u, i });
                         return true;
                     }
-                    if (LookVerticaly(ref aPath,u,i,u1,v1))
+                    if (LookVerticaly(ref aPath, u, i, u1, v1))
                     {
-                        aPath.Add(new int[2] { u,i });
+                        aPath.Add(new int[2] { u, i });
                         return true;
                     }
                 }
             }
             return false;
         }
-        private bool LookVerticaly( ref ArrayList aPath,int u,int v,int u1,int v1 )
+        private bool LookVerticaly(ref ArrayList aPath, int u, int v, int u1, int v1)
         {
             for (int i = 0; i < n; i++)
             {
-                if (i != u && C[i,v].Value != 0)
+                if (i != u && C[i, v].Value != 0)
                 {
-                    if (LookHorizontaly(ref aPath,i,v,u1,v1))
+                    if (LookHorizontaly(ref aPath, i, v, u1, v1))
                     {
-                        aPath.Add(new int[2] { i,v });
+                        aPath.Add(new int[2] { i, v });
                         return true;
                     }
                 }
             }
             return false;
         }
-        private void NorthWest()
-        {
-            gridDelta.RowCount = 0;
-            C = new Element[n,m];
-            PivotN = -1;
-            PivotM = -1;
-            int i = 0;
-            int j = 0;
 
-            for (i = 0; i < aSupply.Length; i++)
-            {
-                aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
-            }
-            for (j = 0; j < aDemand.Length; j++)
-            {
-                aDemand[j] = Convert.ToInt32(gridB.Rows[j].Cells[0].Value);
-            }
-            for (i = 0; i < n; i++)
-            {
-                for (j = 0; j < m; j++)
-                {
-                    C[i,j].Index1 = Convert.ToInt32(gridCBig.Rows[i].Cells[j].Value);
-                }
-            }
-            i = j = 0;
-            while (i < n && j < m)
-            {
-                try
-                {   //ложный ноль (-1)
-                    if (aSupply[i] == 0 && aDemand[j] == 0)
-                    {
-                        if (j + 1 != m && i + 1 != n)
-                        {
-                            if (C[i,j + 1].Index1 < C[i + 1,j].Index1)
-                            {
-                                C[i,j + 1].Value = -1;
-                            }
-                            else
-                            {
-                                C[i + 1,j].Value = -1;
-                            }
-                        }
-                    }
-                    if (aSupply[i] == 0)
-                    { i++; }
-                    if (aDemand[j] == 0)
-                    { j++; }
-
-                    if (aSupply[i] == 0 && aDemand[j] == 0)
-                    { i++; j++; }
-
-                    C[i,j].Value = Element.FindMinElement(aSupply[i],aDemand[j]);
-
-
-                    aSupply[i] -= C[i,j].Value;
-                    aDemand[j] -= C[i,j].Value;
-                }
-                catch { }
-            }
-            PrintPlan();
-            printZ();
-        }
         private void MetodMinElement()
         {
-            int[] indexNullI = new int[m * n];
-            int[] indexNullJ = new int[m * n];
+            int[] indexNullI = new int[(n + m) * (m + m)];
+            int[] indexNullJ = new int[(n + m) * (m + m)];
             gridDelta.RowCount = 0;
-            C = new Element[n,m];
-            El[] CC = new El[n * m];
+            C = new Element[n+m, m+m];
+            El[] CC = new El[(n + m) * (m + m)];
             PivotN = -1;
             PivotM = -1;
             int i = 0;
@@ -527,145 +553,180 @@ namespace TranZadTwoIA
             int indNull = 0;
 
             //сохраняем значения 
-            for (i = 0; i < aSupply.Length; i++)
+            for (i = 0; i < n; i++)
             {
                 aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
             }
-            for (j = 0; j < aDemand.Length; j++)
+            for (i = n; i < n+m; i++)
             {
-                aDemand[j] = Convert.ToInt32(gridB.Rows[j].Cells[0].Value);
+                aSupply[i] = Convert.ToInt32(gridD.Rows[i-n].Cells[0].Value);
             }
+            for (j = 0; j < m; j++)
+            {
+                aDemand[j] = Convert.ToInt32(gridD.Rows[j].Cells[0].Value);
+            }
+            for (j = m; j < m+m; j++)
+            {
+                aDemand[j] = Convert.ToInt32(gridB.Rows[j-m].Cells[0].Value);
+            }
+
             for (i = 0; i < n; i++)
             {
                 for (j = 0; j < m; j++)
                 {
-                    C[i,j].Index1 = Convert.ToInt32(gridCBig.Rows[i].Cells[j].Value);
+                    C[i, j].Index1 = Convert.ToInt32(gridCBig.Rows[i].Cells[j].Value);
                 }
             }
 
 
-            //сохраняем тарифы и их индексы 
-            int l = 0;
+            for (i = n; i < n + m; i++)
+            {
+                for (j = m; j < m + m; j++)
+                {
+                    C[i, j].Index2 = Convert.ToInt32(gridCSmall.Rows[i-n].Cells[j-m].Value);
+                }
+            }
+
+
             for (i = 0; i < n; i++)
             {
-                for (j = 0; j < m; j++)
+                for (j = m; j < m + m; j++)
                 {
-                    CC[l].Index = C[i,j].Index1;
-                    CC[l].IndexI = i;
-                    CC[l].IndexJ = j;
-                    l++;
+                    C[i, j].Value = -11;
                 }
             }
-            //сортируем по тарифам (индексам)
-            l = 0;
-            foreach (var p in CC.OrderBy(itm => itm.Index))
+
+
+
+            if (true)
             {
-                CC[l] = p;
-                l++;
+
             }
 
-            l = 0;
-            int minEl = 0;
-            while (l < n * m)
-            {
-                
-                if (CC[l].Index != 0)
-                {
-                    minEl = Element.FindMinElement(aSupply[CC[l].IndexI],aDemand[CC[l].IndexJ]);
+            ////сохраняем тарифы и их индексы 
+            //int l = 0;
+            //for (i = 0; i < n; i++)
+            //{
+            //    for (j = 0; j < m; j++)
+            //    {
+            //        CC[l].Index = C[i, j].Index1;
+            //        CC[l].IndexI = i;
+            //        CC[l].IndexJ = j;
+            //        l++;
+            //    }
+            //}
+            ////сортируем по тарифам (индексам)
+            //l = 0;
+            //foreach (var p in CC.OrderBy(itm => itm.Index))
+            //{
+            //    CC[l] = p;
+            //    l++;
+            //}
 
-                    C[CC[l].IndexI,CC[l].IndexJ].Value = minEl;
+            //l = 0;
+            //int minEl = 0;
+            //while (l < n * m)
+            //{
+
+            //    if (CC[l].Index != 0)
+            //    {
+            //        minEl = Element.FindMinElement(aSupply[CC[l].IndexI], aDemand[CC[l].IndexJ]);
+
+            //        C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
 
 
-                    if ((aSupply[CC[l].IndexI] - minEl == 0 && aDemand[CC[l].IndexJ] - minEl == 0) && (aSupply[CC[l].IndexI] != 0 && aDemand[CC[l].IndexJ] != 0))
-                    {
-                        indexNullI[indNull] = CC[l].IndexI;
-                        indexNullJ[indNull] = CC[l].IndexJ;
-                        indNull++;
-                    }
+            //        if ((aSupply[CC[l].IndexI] - minEl == 0 && aDemand[CC[l].IndexJ] - minEl == 0) && (aSupply[CC[l].IndexI] != 0 && aDemand[CC[l].IndexJ] != 0))
+            //        {
+            //            indexNullI[indNull] = CC[l].IndexI;
+            //            indexNullJ[indNull] = CC[l].IndexJ;
+            //            indNull++;
+            //        }
 
-                    aSupply[CC[l].IndexI] -= minEl;
-                    aDemand[CC[l].IndexJ] -= minEl;
-                }
+            //        aSupply[CC[l].IndexI] -= minEl;
+            //        aDemand[CC[l].IndexJ] -= minEl;
+            //    }
 
-                l++;
-            }
+            //    l++;
+            //}
 
-            l = 0;
-            while (l < n * m)
-            {
-                if (CC[l].Index == 0)
-                {
-                    minEl = Element.FindMinElement(aSupply[CC[l].IndexI],aDemand[CC[l].IndexJ]);
+            //l = 0;
+            //while (l < n * m)
+            //{
+            //    if (CC[l].Index == 0)
+            //    {
+            //        minEl = Element.FindMinElement(aSupply[CC[l].IndexI], aDemand[CC[l].IndexJ]);
 
-                    C[CC[l].IndexI,CC[l].IndexJ].Value = minEl;
-                    aSupply[CC[l].IndexI] -= C[CC[l].IndexI,CC[l].IndexJ].Value;
-                    aDemand[CC[l].IndexJ] -= C[CC[l].IndexI,CC[l].IndexJ].Value;
-                }
+            //        C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
+            //        aSupply[CC[l].IndexI] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
+            //        aDemand[CC[l].IndexJ] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
+            //    }
 
-                l++;
-            }
-            int s = 0;
-            for (i = 0; i < n; i++)
-            {
-                for (j = 0; j < m; j++)
-                {
-                    if (C[i,j].Value != 0)
-                    {
-                        s++;
-                    }
-                }
-            }
-            indNull = 0;
-            while (s < n + m - 1)
-            {
-                int minInd = int.MaxValue;
-                int indI = 0;
-                int indJ = 0;
+            //    l++;
+            //}
+            //int s = 0;
+            //for (i = 0; i < n; i++)
+            //{
+            //    for (j = 0; j < m; j++)
+            //    {
+            //        if (C[i, j].Value != 0)
+            //        {
+            //            s++;
+            //        }
+            //    }
+            //}
+            //indNull = 0;
+            //while (s < n + m - 1)
+            //{
+            //    int minInd = int.MaxValue;
+            //    int indI = 0;
+            //    int indJ = 0;
 
-                if (indexNullJ[indNull] + 1 <= m)
-                {
-                    if (C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1 < minInd)
-                    {
-                        minInd = C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1;
-                        indI = indexNullI[indNull];
-                        indJ = indexNullJ[indNull] + 1;
-                    }
-                }
-                if (indexNullJ[indNull] - 1 >= 0)
-                {
-                    if (C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1 < minInd)
-                    {
-                        minInd = C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1;
-                        indI = indexNullI[indNull];
-                        indJ = indexNullJ[indNull] - 1;
-                    }
-                }
+            //    if (indexNullJ[indNull] + 1 <= m)
+            //    {
+            //        if (C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1;
+            //            indI = indexNullI[indNull];
+            //            indJ = indexNullJ[indNull] + 1;
+            //        }
+            //    }
+            //    if (indexNullJ[indNull] - 1 >= 0)
+            //    {
+            //        if (C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1;
+            //            indI = indexNullI[indNull];
+            //            indJ = indexNullJ[indNull] - 1;
+            //        }
+            //    }
 
-                if (indexNullI[indNull] + 1 <= n)
-                {
-                    if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
-                    {
-                        minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
-                        indI = indexNullI[indNull] + 1;
-                        indJ = indexNullJ[indNull];
-                    }
-                }
-                if (indexNullI[indNull] - 1 >= 0)
-                {
-                    if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
-                    {
-                        minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
-                        indI = indexNullI[indNull] - 1;
-                        indJ = indexNullJ[indNull];
-                    }
-                }
-                C[indI, indJ].Value = -1;
-                s++;
-                indNull++;
-            }
-            PrintPlan();
-            printZ();
+            //    if (indexNullI[indNull] + 1 <= n)
+            //    {
+            //        if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
+            //            indI = indexNullI[indNull] + 1;
+            //            indJ = indexNullJ[indNull];
+            //        }
+            //    }
+            //    if (indexNullI[indNull] - 1 >= 0)
+            //    {
+            //        if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
+            //            indI = indexNullI[indNull] - 1;
+            //            indJ = indexNullJ[indNull];
+            //        }
+            //    }
+            //    C[indI, indJ].Value = -1;
+            //    s++;
+            //    indNull++;
+            //}
+            //PrintPlan();
+            //printZ();
         }
+
+
         private bool NotOptimal()
         {   //проверка на оптимальность
             int nMax = -nVeryLargeNumber;
@@ -676,7 +737,7 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    x = C[i,j].Delta;
+                    x = C[i, j].Delta;
                     if (x > nMax)
                     {
                         nMax = x;
@@ -690,12 +751,12 @@ namespace TranZadTwoIA
         private void BetterOptimal()
         {   // высчитываем оптимальный
             ArrayList aPath = new ArrayList();
-            aPath = FindPath(PivotN,PivotM);
+            aPath = FindPath(PivotN, PivotM);
             int nMin = nVeryLargeNumber;
             int t;
             for (int w = 1; w < aPath.Count; w += 2)
             {
-                t = C[(aPath[w] as int[])[0],(aPath[w] as int[])[1]].Value;
+                t = C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value;
                 if (t == -1)
                     t = 0;
                 if (t < nMin)
@@ -707,29 +768,29 @@ namespace TranZadTwoIA
             {
                 if (nMin == 0)
                 {
-                    if (C[(aPath[w] as int[])[0],(aPath[w] as int[])[1]].Value == -1)
-                        C[(aPath[w] as int[])[0],(aPath[w] as int[])[1]].Value = 0;
+                    if (C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value == -1)
+                        C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value = 0;
                     else
-                        C[(aPath[w] as int[])[0],(aPath[w] as int[])[1]].Value -= nMin;
+                        C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value -= nMin;
 
-                    if (C[(aPath[w - 1] as int[])[0],(aPath[w - 1] as int[])[1]].Value == 0)
-                        C[(aPath[w - 1] as int[])[0],(aPath[w - 1] as int[])[1]].Value = -1;
+                    if (C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value == 0)
+                        C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value = -1;
                     else
                     {
-                        if (C[(aPath[w - 1] as int[])[0],(aPath[w - 1] as int[])[1]].Value == -1)
-                            C[(aPath[w - 1] as int[])[0],(aPath[w - 1] as int[])[1]].Value = -1;
+                        if (C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value == -1)
+                            C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value = -1;
                         else
-                            C[(aPath[w - 1] as int[])[0],(aPath[w - 1] as int[])[1]].Value += nMin;
+                            C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value += nMin;
                     }
                 }
                 else
                 {
 
-                    C[(aPath[w] as int[])[0],(aPath[w] as int[])[1]].Value -= nMin;
-                    if (C[(aPath[w - 1] as int[])[0],(aPath[w - 1] as int[])[1]].Value == -1)
-                        C[(aPath[w - 1] as int[])[0],(aPath[w - 1] as int[])[1]].Value += (nMin + 1);
+                    C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value -= nMin;
+                    if (C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value == -1)
+                        C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value += (nMin + 1);
                     else
-                        C[(aPath[w - 1] as int[])[0],(aPath[w - 1] as int[])[1]].Value += nMin;
+                        C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value += nMin;
                 }
             }
             //Проверка на невырожденность
@@ -743,7 +804,7 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    if (C[i,j].Value != 0)
+                    if (C[i, j].Value != 0)
                     {
                         s++;
                     }
@@ -755,11 +816,11 @@ namespace TranZadTwoIA
                 {
                     for (int j = m - 1; j >= 0; j--)
                     {
-                        if (C[i,j].Q == "-Q")
+                        if (C[i, j].Q == "-Q")
                         {
-                            if (C[i,j].Value == 0)
+                            if (C[i, j].Value == 0)
                             {
-                                C[i,j].Value = -1;
+                                C[i, j].Value = -1;
                                 s++;
                                 return;
                             }
@@ -774,7 +835,7 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    C[i,j].Q = "";
+                    C[i, j].Q = "";
                 }
             }
         }
@@ -782,15 +843,15 @@ namespace TranZadTwoIA
         {
             ClearQ();
             ArrayList aPath = new ArrayList();
-            aPath = FindPath(PivotN,PivotM);
+            aPath = FindPath(PivotN, PivotM);
             for (int w = 1; w < aPath.Count; w += 2)
             {
-                gridSupport.Rows[(aPath[w] as int[])[0]].Cells[(aPath[w] as int[])[1]].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Bold,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                gridSupport.Rows[(aPath[w] as int[])[0]].Cells[(aPath[w] as int[])[1]].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 gridSupport.Rows[(aPath[w] as int[])[0]].Cells[(aPath[w] as int[])[1]].Style.ForeColor = Color.Red;
-                C[(aPath[w] as int[])[0],(aPath[w] as int[])[1]].Q = "-Q";
-                gridSupport.Rows[(aPath[w - 1] as int[])[0]].Cells[(aPath[w - 1] as int[])[1]].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Bold,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Q = "-Q";
+                gridSupport.Rows[(aPath[w - 1] as int[])[0]].Cells[(aPath[w - 1] as int[])[1]].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 gridSupport.Rows[(aPath[w - 1] as int[])[0]].Cells[(aPath[w - 1] as int[])[1]].Style.ForeColor = Color.Red;
-                C[(aPath[w - 1] as int[])[0],(aPath[w - 1] as int[])[1]].Q = "+Q";
+                C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Q = "+Q";
 
             }
             gridSupport.RowCount = n;
@@ -799,25 +860,25 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m; j++)
                 {
-                    if (C[i,j].Value != 0)
+                    if (C[i, j].Value != 0)
                     {
-                        if (C[i,j].Value == -1)
+                        if (C[i, j].Value == -1)
                         {
-                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "            " + C[i,j].Index1 + "\n" + (C[i,j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + C[i, j].Index1 + "\n" + (C[i, j].Value + 1).ToString();
                         }
                         else
                         {
-                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "            " + C[i,j].Index1 + "\n" + C[i,j].Value.ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + C[i, j].Index1 + "\n" + C[i, j].Value.ToString();
                         }
                     }
                     else
                     {
-                        gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "            " + C[i,j].Index1 + "\n " + "--";
+                        gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + C[i, j].Index1 + "\n " + "--";
                     }
                 }
             }
         }
-        private void ModelType( object sender,EventArgs e )
+        private void ModelType(object sender, EventArgs e)
         {
             int sumA = 0, sumB = 0;
 
@@ -832,11 +893,11 @@ namespace TranZadTwoIA
                     }
 
                 }
-                for (int i = 0; i < aSupply.Length; i++)
+                for (int i = 0; i < n; i++)
                 {
                     sumA += Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
                 }
-                for (int j = 0; j < aDemand.Length; j++)
+                for (int j = 0; j < m; j++)
                 {
                     sumB += Convert.ToInt32(gridB.Rows[j].Cells[0].Value);
                 }
@@ -869,16 +930,16 @@ namespace TranZadTwoIA
                         lblModelType.Text = "A = " + sumA + "; B = " + sumB + ";    A < B - Открытая модель";
                     }
                 }
-                for (int i = 0; i < aSupply.Length; i++)
+                for (int i = 0; i < n; i++)
                 {
                     if (Convert.ToInt32(gridA.Rows[i].Cells[0].Value) == 0)
                     {
                         throw new Exception();
                     }
                 }
-                for (int j = 0; j < aDemand.Length; j++)
+                for (int j = 0; j < m; j++)
                 {
-                    
+
                     if (Convert.ToInt32(gridB.Rows[j].Cells[0].Value) == 0)
                     {
                         throw new Exception();
@@ -888,16 +949,16 @@ namespace TranZadTwoIA
             catch (Exception)
             {
 
-                MessageBox.Show("Введите корректные данные", "Ошибка",MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Введите корректные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 tabControl1.SelectTab(0);
             }
         }
-        private void tabControl1_Selecting( object sender,TabControlCancelEventArgs e )
+        private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
             if (e.TabPageIndex == 1)
-            ModelType(null,null);
+                ModelType(null, null);
         }
-        private void btnSolve_Click( object sender,EventArgs e )
+        private void btnSolve_Click(object sender, EventArgs e)
         {
             numTable = 1;
             CountStep = 0;
@@ -912,22 +973,18 @@ namespace TranZadTwoIA
 
             Qmin.Visible = false;
             gridDelta.RowCount = 0;
-            C = new Element[n,m];
+
+
+
+            C = new Element[n+m, m+m];
             UVDOutBtn.Enabled = true;
             NextPlanBtn.Enabled = false;
             UVDOutBtn.Visible = true;
             NextPlanBtn.Visible = true;
             lblOptPlan.Visible = false;
 
-            if (rbNW.Checked)
-            {
-                NorthWest();
-            }
-            else
-            {
-                MetodMinElement();
-            }
 
+            MetodMinElement();
         }
         private void PrintSavePlan()
         {
@@ -938,53 +995,53 @@ namespace TranZadTwoIA
                 for (int j = 0; j < m; j++)
                 {
                     gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-                    if (C[i,j].Q == "+Q" || C[i,j].Q == "-Q")
+                    if (C[i, j].Q == "+Q" || C[i, j].Q == "-Q")
                     {
                         gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Red;
                     }
-                    if (C[i,j].Value != 0)
+                    if (C[i, j].Value != 0)
                     {
-                        if (C[i,j].Value == -1)
+                        if (C[i, j].Value == -1)
                         {
-                            if (C[i,j].Q != "")
+                            if (C[i, j].Q != "")
                             {
-                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Bold,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                             }
                             else
                             {
-                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                             }
-                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n" + (C[i,j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + (C[i, j].Value + 1).ToString();
                         }
                         else
                         {
-                            if (C[i,j].Q != "")
+                            if (C[i, j].Q != "")
                             {
-                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Bold,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                             }
                             else
                             {
-                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                             }
-                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n" + C[i,j].Value.ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + C[i, j].Value.ToString();
                         }
                     }
                     else
                     {
-                        if (C[i,j].Q != "")
+                        if (C[i, j].Q != "")
                         {
-                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Bold,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                         }
                         else
                         {
-                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
+                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                         }
-                        gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n " + "--";
+                        gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n " + "--";
                     }
                 }
             }
         }
-        private void backTable_Click( object sender,EventArgs e )
+        private void backTable_Click(object sender, EventArgs e)
         {
             if (CountStep > 0)
             {
@@ -1006,7 +1063,7 @@ namespace TranZadTwoIA
                     backTable.Enabled = false;
             }
         }
-        private void nextTable_Click( object sender,EventArgs e )
+        private void nextTable_Click(object sender, EventArgs e)
         {
             if (CountStep < Csave.Length - 1)
             {
@@ -1016,7 +1073,7 @@ namespace TranZadTwoIA
                 V = (int[])Vsave[CountStep];
                 C = (Element[,])Csave[CountStep];
 
-                gridSupport.TopLeftHeaderCell.Value = "X" + (CountStep+1).ToString();
+                gridSupport.TopLeftHeaderCell.Value = "X" + (CountStep + 1).ToString();
                 gridDelta.TopLeftHeaderCell.Value = "X" + (CountStep + 1).ToString();   //
 
 
