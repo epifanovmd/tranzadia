@@ -8,19 +8,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
+using TranZadIA;
 
-namespace TranZadIA
+namespace TranZadTwoIA
 {
-    public partial class Form1 : Form
+    public partial class TranZadTwo : Form
     {
-        public Form1()
+        public TranZadTwo()
         {
             InitializeComponent();
             RowColCount_ValueChanged(null,null);
    }
         public struct Element
         {
-            public int Index { get; set; }
+            public int Index1 { get; set; }
+            public int Index2 { get; set; }
             public int Value { get; set; }
             public string Q { get; set; }
             public int Delta { get; set; }
@@ -73,13 +75,28 @@ namespace TranZadIA
                 aDemand = new int[m];
                 C = new Element[n,m];
                 gridA.RowCount = n;
-                gridC.RowCount = n;
                 gridA.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
-                gridC.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
+
                 gridB.RowCount = m;
-                gridC.ColumnCount = m;
                 gridB.Rows[m - 1].HeaderCell.Value = "B" + m.ToString();
-                gridC.Columns[m - 1].HeaderText = "B" + m.ToString();
+
+                gridCBig.RowCount = n;
+                gridCBig.ColumnCount = m;
+                gridCBig.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
+                gridCBig.Columns[m - 1].HeaderText = "D" + m.ToString();
+
+                gridStores.RowCount = m;
+                gridStores.Rows[m - 1].HeaderCell.Value = "D" + m.ToString();
+
+
+
+                gridCSmall.RowCount = m;
+                gridCSmall.ColumnCount = m;
+                gridCSmall.Rows[m - 1].HeaderCell.Value = "D" + m.ToString();
+                gridCSmall.Columns[m - 1].HeaderText = "B" + m.ToString();
+
+
+
 
             }
             catch (Exception)
@@ -196,9 +213,9 @@ namespace TranZadIA
                 for (int j = 0; j < m; j++)
                 {
                     if (C[i,j].Value == -1)
-                        Z += C[i,j].Index * (C[i,j].Value + 1);
+                        Z += C[i,j].Index1 * (C[i,j].Value + 1);
                     else
-                        Z += C[i,j].Index * C[i,j].Value;
+                        Z += C[i,j].Index1 * C[i,j].Value;
                 }
             }
             lblSum.Text = "Сумма Z = " + Z.ToString();
@@ -238,20 +255,20 @@ namespace TranZadIA
                         {
                             gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
                             gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-                            gridSupport.Rows[i].Cells[j].Value = ((C[i,j].Q == "") || (C[i,j].Q == null) ? "          " : C[i,j].Q) + "          " + C[i,j].Index + "\n" + (C[i,j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Value = ((C[i,j].Q == "") || (C[i,j].Q == null) ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n" + (C[i,j].Value + 1).ToString();
                         }
                         else
                         {
                             gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
                             gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-                            gridSupport.Rows[i].Cells[j].Value = ((C[i,j].Q == "") || (C[i,j].Q == null) ? "          " : C[i,j].Q) + "          " + C[i,j].Index + "\n" + C[i,j].Value.ToString();
+                            gridSupport.Rows[i].Cells[j].Value = ((C[i,j].Q == "") || (C[i,j].Q == null) ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n" + C[i,j].Value.ToString();
                         }
                     }
                     else
                     {
                         gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
                         gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-                        gridSupport.Rows[i].Cells[j].Value = ((C[i,j].Q == "") || (C[i,j].Q == null) ? "          " : C[i,j].Q) + "          " + C[i,j].Index + "\n " + "--";
+                        gridSupport.Rows[i].Cells[j].Value = ((C[i,j].Q == "") || (C[i,j].Q == null) ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n " + "--";
                     }
                 }
             }
@@ -308,7 +325,7 @@ namespace TranZadIA
 
                         if (C[i,j].Delta > deltaMax)
                         {
-                            deltaMax = U[i] + V[j] - C[i,j].Index;
+                            deltaMax = U[i] + V[j] - C[i,j].Index1;
                         }
                         k++;
                     }
@@ -334,7 +351,7 @@ namespace TranZadIA
                 if (C[0,i].Value != 0)
                 {
                     Vf[i] = true;
-                    V[i] = C[0,i].Index;
+                    V[i] = C[0,i].Index1;
                 }
             }
 
@@ -352,14 +369,14 @@ namespace TranZadIA
                             if (Vf[j] != false)
                             {
                                 Uf[i] = true;
-                                U[i] = Convert.ToInt32(C[i,j].Index - V[j]);
+                                U[i] = Convert.ToInt32(C[i,j].Index1 - V[j]);
                             }
                             else
                             {
                                 if (Uf[i] != false)
                                 {
                                     Vf[j] = true;
-                                    V[j] = Convert.ToInt32(C[i,j].Index - U[i]);
+                                    V[j] = Convert.ToInt32(C[i,j].Index1 - U[i]);
                                 }
                             }
                         }
@@ -387,7 +404,7 @@ namespace TranZadIA
                     C[i,j].Delta = 0;
                     if (C[i,j].Value == 0)
                     {
-                        C[i,j].Delta = (U[i] + V[j] - C[i,j].Index);
+                        C[i,j].Delta = (U[i] + V[j] - C[i,j].Index1);
                     }
                 }
             }
@@ -455,7 +472,7 @@ namespace TranZadIA
             {
                 for (j = 0; j < m; j++)
                 {
-                    C[i,j].Index = Convert.ToInt32(gridC.Rows[i].Cells[j].Value);
+                    C[i,j].Index1 = Convert.ToInt32(gridCBig.Rows[i].Cells[j].Value);
                 }
             }
             i = j = 0;
@@ -467,7 +484,7 @@ namespace TranZadIA
                     {
                         if (j + 1 != m && i + 1 != n)
                         {
-                            if (C[i,j + 1].Index < C[i + 1,j].Index)
+                            if (C[i,j + 1].Index1 < C[i + 1,j].Index1)
                             {
                                 C[i,j + 1].Value = -1;
                             }
@@ -522,7 +539,7 @@ namespace TranZadIA
             {
                 for (j = 0; j < m; j++)
                 {
-                    C[i,j].Index = Convert.ToInt32(gridC.Rows[i].Cells[j].Value);
+                    C[i,j].Index1 = Convert.ToInt32(gridCBig.Rows[i].Cells[j].Value);
                 }
             }
 
@@ -533,7 +550,7 @@ namespace TranZadIA
             {
                 for (j = 0; j < m; j++)
                 {
-                    CC[l].Index = C[i,j].Index;
+                    CC[l].Index = C[i,j].Index1;
                     CC[l].IndexI = i;
                     CC[l].IndexJ = j;
                     l++;
@@ -607,18 +624,18 @@ namespace TranZadIA
 
                 if (indexNullJ[indNull] + 1 <= m)
                 {
-                    if (C[indexNullI[indNull], indexNullJ[indNull] + 1].Index < minInd)
+                    if (C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1 < minInd)
                     {
-                        minInd = C[indexNullI[indNull], indexNullJ[indNull] + 1].Index;
+                        minInd = C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1;
                         indI = indexNullI[indNull];
                         indJ = indexNullJ[indNull] + 1;
                     }
                 }
                 if (indexNullJ[indNull] - 1 >= 0)
                 {
-                    if (C[indexNullI[indNull], indexNullJ[indNull] - 1].Index < minInd)
+                    if (C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1 < minInd)
                     {
-                        minInd = C[indexNullI[indNull], indexNullJ[indNull] - 1].Index;
+                        minInd = C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1;
                         indI = indexNullI[indNull];
                         indJ = indexNullJ[indNull] - 1;
                     }
@@ -626,18 +643,18 @@ namespace TranZadIA
 
                 if (indexNullI[indNull] + 1 <= n)
                 {
-                    if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index < minInd)
+                    if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
                     {
-                        minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index;
+                        minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
                         indI = indexNullI[indNull] + 1;
                         indJ = indexNullJ[indNull];
                     }
                 }
                 if (indexNullI[indNull] - 1 >= 0)
                 {
-                    if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index < minInd)
+                    if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
                     {
-                        minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index;
+                        minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
                         indI = indexNullI[indNull] - 1;
                         indJ = indexNullJ[indNull];
                     }
@@ -786,16 +803,16 @@ namespace TranZadIA
                     {
                         if (C[i,j].Value == -1)
                         {
-                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "            " + C[i,j].Index + "\n" + (C[i,j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "            " + C[i,j].Index1 + "\n" + (C[i,j].Value + 1).ToString();
                         }
                         else
                         {
-                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "            " + C[i,j].Index + "\n" + C[i,j].Value.ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "            " + C[i,j].Index1 + "\n" + C[i,j].Value.ToString();
                         }
                     }
                     else
                     {
-                        gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "            " + C[i,j].Index + "\n " + "--";
+                        gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "            " + C[i,j].Index1 + "\n " + "--";
                     }
                 }
             }
@@ -807,11 +824,11 @@ namespace TranZadIA
             try
             {   //исключение
                 int TEMP = 0;
-                for (int i = 0; i < gridC.RowCount; i++)
+                for (int i = 0; i < gridCBig.RowCount; i++)
                 {
-                    for (int j = 0; j < gridC.ColumnCount; j++)
+                    for (int j = 0; j < gridCBig.ColumnCount; j++)
                     {
-                        TEMP = Convert.ToInt32(gridC.Rows[i].Cells[j].Value);
+                        TEMP = Convert.ToInt32(gridCBig.Rows[i].Cells[j].Value);
                     }
 
                 }
@@ -836,7 +853,7 @@ namespace TranZadIA
 
                         for (int i = 0; i < n; i++)
                         {
-                            gridC.Rows[i].Cells[m - 1].Value = 0;
+                            gridCBig.Rows[i].Cells[m - 1].Value = 0;
                         }
                         lblModelType.Text = "A = " + sumA + "; B = " + sumB + ";    A > B - Открытая модель";
                     }
@@ -847,7 +864,7 @@ namespace TranZadIA
 
                         for (int i = 0; i < m; i++)
                         {
-                            gridC.Rows[n - 1].Cells[i].Value = 0;
+                            gridCBig.Rows[n - 1].Cells[i].Value = 0;
                         }
                         lblModelType.Text = "A = " + sumA + "; B = " + sumB + ";    A < B - Открытая модель";
                     }
@@ -937,7 +954,7 @@ namespace TranZadIA
                             {
                                 gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
                             }
-                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "          " + C[i,j].Index + "\n" + (C[i,j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n" + (C[i,j].Value + 1).ToString();
                         }
                         else
                         {
@@ -949,7 +966,7 @@ namespace TranZadIA
                             {
                                 gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
                             }
-                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "          " + C[i,j].Index + "\n" + C[i,j].Value.ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n" + C[i,j].Value.ToString();
                         }
                     }
                     else
@@ -962,7 +979,7 @@ namespace TranZadIA
                         {
                             gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif",8.25F,System.Drawing.FontStyle.Regular,System.Drawing.GraphicsUnit.Point,((byte)(204)));
                         }
-                        gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "          " + C[i,j].Index + "\n " + "--";
+                        gridSupport.Rows[i].Cells[j].Value = (C[i,j].Q == "" ? "          " : C[i,j].Q) + "          " + C[i,j].Index1 + "\n " + "--";
                     }
                 }
             }

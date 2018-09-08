@@ -95,9 +95,10 @@ C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\bin\De
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\bin\Debug\TranZadIA.exe
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\bin\Debug\TranZadIA.pdb
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.Form1.resources
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.TrainingForm.resources
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.exe
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.pdb
+C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.TranZad.resources
+C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadTwoIA.TranZadTwo.resources
