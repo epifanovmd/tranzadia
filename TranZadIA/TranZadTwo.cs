@@ -141,6 +141,7 @@ namespace TranZadTwoIA
         public int CountStep;
         public int[] aDemand;
         public int[] aSupply;
+        public int[] aStore;
         public int nVeryLargeNumber = int.MaxValue;
         public int PivotN;
         public int PivotM;
@@ -157,9 +158,10 @@ namespace TranZadTwoIA
             try
             {
                 n = Convert.ToInt32(RowCount.Value);
-                aSupply = new int[n + m];
+                aSupply = new int[n];
                 m = Convert.ToInt32(ColumnCount.Value);
-                aDemand = new int[m + m];
+                aDemand = new int[m];
+                aStore = new int[m];
                 C = new Element[n + m, m + m];
                 gridA.RowCount = n;
                 gridA.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
@@ -326,17 +328,15 @@ namespace TranZadTwoIA
             {
                 aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
             }
-            for (int i = n; i < n + m; i++)
+            for (int i = 0; i < m; i++)
             {
-                aSupply[i] = Convert.ToInt32(gridD.Rows[i - n].Cells[0].Value);
+                aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
             }
-            for (int j = 0; j < m; j++)
+
+
+            for (int i = 0; i < m; i++)
             {
-                aDemand[j] = Convert.ToInt32(gridD.Rows[j].Cells[0].Value);
-            }
-            for (int j = m; j < m + m; j++)
-            {
-                aDemand[j] = Convert.ToInt32(gridB.Rows[j - m].Cells[0].Value);
+                aDemand[i] = Convert.ToInt32(gridB.Rows[i].Cells[0].Value);
             }
 
 
@@ -347,16 +347,18 @@ namespace TranZadTwoIA
             }
             for (int j = m; j < m + m; j++)
             {
-                gridSupport.Columns[j].HeaderText = "      " + aDemand[j].ToString();
+                gridSupport.Columns[j].HeaderText = "      " + aDemand[j - m].ToString();
             }
             for (int i = n; i < n + m; i++)
             {
-                gridSupport.Rows[i].HeaderCell.Value = aSupply[i].ToString();
+                gridSupport.Rows[i].HeaderCell.Value = aStore[i - n].ToString();
             }
             for (int j = 0; j < m; j++)
             {
-                gridSupport.Columns[j].HeaderText = "      " + aDemand[j].ToString();
+                gridSupport.Columns[j].HeaderText = "      " + aStore[j].ToString();
             }
+
+
 
             for (int i = 0; i < n; i++)
             {
@@ -473,7 +475,7 @@ namespace TranZadTwoIA
                     }
                 }
             }
-            for (int i = n; i < n+m; i++)
+            for (int i = n; i < n + m; i++)
             {
                 for (int j = 0; j < m; j++)
                 {
@@ -701,7 +703,7 @@ namespace TranZadTwoIA
             int[] indexNullJ = new int[(n + m) * (m + m)];
             gridDelta.RowCount = 0;
             C = new Element[n + m, m + m];
-            El[] CC = new El[n *  m];
+            El[] CC = new El[n * m];
             PivotN = -1;
             PivotM = -1;
             int i = 0;
@@ -713,19 +715,28 @@ namespace TranZadTwoIA
             {
                 aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
             }
-            for (i = n; i < n + m; i++)
+            for (i = 0; i < m; i++)
             {
-                aSupply[i] = Convert.ToInt32(gridD.Rows[i - n].Cells[0].Value);
-            }
-            for (j = 0; j < m; j++)
-            {
-                aDemand[j] = Convert.ToInt32(gridD.Rows[j].Cells[0].Value);
-            }
-            for (j = m; j < m + m; j++)
-            {
-                aDemand[j] = Convert.ToInt32(gridB.Rows[j - m].Cells[0].Value);
+                aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
             }
 
+
+            for (i = 0; i < m; i++)
+            {
+                aDemand[i] = Convert.ToInt32(gridB.Rows[i].Cells[0].Value);
+            }
+
+
+
+
+            int[] aaSupply = new int[aSupply.Length];
+            int[] aaDemand = new int[aDemand.Length];
+            int[] aaStore = new int[aStore.Length];
+            aaSupply = (int[])aSupply.Clone();
+            aaDemand = (int[])aDemand.Clone();
+            aaStore = (int[])aStore.Clone();
+
+            // индексы верхней левой таблицы
             for (i = 0; i < n; i++)
             {
                 for (j = 0; j < m; j++)
@@ -734,18 +745,7 @@ namespace TranZadTwoIA
                 }
             }
 
-            int[] skladi = new int[m];
-            for (j = 0; j < m; j++)
-            {
-                skladi[j] = Convert.ToInt32(gridD.Rows[j].Cells[0].Value);
-            }
-
-
-            int[] aaSupply = new int[aSupply.Length];
-            int[] aaDemand = new int[aDemand.Length];
-            aaSupply = aSupply;
-            aaDemand = aDemand;
-
+            // индексы нижней правой таблицы
             for (i = n; i < n + m; i++)
             {
                 for (j = m; j < m + m; j++)
@@ -754,7 +754,7 @@ namespace TranZadTwoIA
                 }
             }
 
-
+            // M-ки правой верхней таблицы
             for (i = 0; i < n; i++)
             {
                 for (j = m; j < m + m; j++)
@@ -763,12 +763,13 @@ namespace TranZadTwoIA
                 }
             }
 
-            for (i = n; i < n+m; i++)
+            // M-ки левой нижней таблицы
+            for (i = n; i < n + m; i++)
             {
                 for (j = 0; j < m; j++)
                 {
-                    if((i-n)!=j)
-                    C[i, j].Value = -11;
+                    if ((i - n) != j)
+                        C[i, j].Value = -11;
                 }
             }
 
@@ -800,12 +801,12 @@ namespace TranZadTwoIA
 
                 if (CC[l].Index != 0)
                 {
-                    minEl = Element.FindMinElement(aaSupply[CC[l].IndexI], skladi[CC[l].IndexJ]);
+                    minEl = Element.FindMinElement(aaSupply[CC[l].IndexI], aaStore[CC[l].IndexJ]);
 
                     C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
 
 
-                    if ((aaSupply[CC[l].IndexI] - minEl == 0 && skladi[CC[l].IndexJ] - minEl == 0) && (aaSupply[CC[l].IndexI] != 0 && skladi[CC[l].IndexJ] != 0))
+                    if ((aaSupply[CC[l].IndexI] - minEl == 0 && aaStore[CC[l].IndexJ] - minEl == 0) && (aaSupply[CC[l].IndexI] != 0 && aaStore[CC[l].IndexJ] != 0))
                     {
                         indexNullI[indNull] = CC[l].IndexI;
                         indexNullJ[indNull] = CC[l].IndexJ;
@@ -813,7 +814,7 @@ namespace TranZadTwoIA
                     }
 
                     aaSupply[CC[l].IndexI] -= minEl;
-                    skladi[CC[l].IndexJ] -= minEl;
+                    aaStore[CC[l].IndexJ] -= minEl;
                 }
 
                 l++;
@@ -824,15 +825,17 @@ namespace TranZadTwoIA
             {
                 if (CC[l].Index == 0)
                 {
-                    minEl = Element.FindMinElement(aaSupply[CC[l].IndexI], skladi[CC[l].IndexJ]);
+                    minEl = Element.FindMinElement(aaSupply[CC[l].IndexI], aaStore[CC[l].IndexJ]);
 
                     C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
                     aaSupply[CC[l].IndexI] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
-                    skladi[CC[l].IndexJ] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
+                    aaStore[CC[l].IndexJ] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
                 }
 
                 l++;
             }
+
+
             int s = 0;
             for (i = 0; i < n; i++)
             {
@@ -844,6 +847,8 @@ namespace TranZadTwoIA
                     }
                 }
             }
+
+
             indNull = 0;
             while (s < n + m - 1)
             {
@@ -892,6 +897,225 @@ namespace TranZadTwoIA
                 s++;
                 indNull++;
             }
+
+
+            int ind = 0;
+            int value = 0;
+
+
+            for (i = 0; i < m; i++)
+            {
+                if (aaStore[i] !=0)
+                {
+
+                    ind = i;
+                    value = aaStore[i];
+                    C[i+n,i].Value = aaStore[i];
+                }
+
+            }
+
+
+            aaDemand = (int[])aDemand.Clone();
+            aaStore = (int[])aStore.Clone();
+
+            for (i = 0; i < m; i++)
+            {
+                if (i == ind)
+                {
+
+                    aaStore[i] -= value;
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            ////сохраняем тарифы и их индексы 
+            //l = 0;
+            //for (i = 0; i < n; i++)
+            //{
+            //    for (j = 0; j < m; j++)
+            //    {
+            //        CC[l].Index = C[i, j].Index2;
+            //        CC[l].IndexI = i;
+            //        CC[l].IndexJ = j;
+            //        l++;
+            //    }
+            //}
+            ////сортируем по тарифам (индексам)
+            //l = 0;
+            //foreach (var p in CC.OrderBy(itm => itm.Index))
+            //{
+            //    CC[l] = p;
+            //    l++;
+            //}
+
+            //l = 0;
+            //minEl = 0;
+            //while (l < n * m)
+            //{
+
+            //    if (CC[l].Index != 0)
+            //    {
+            //        minEl = Element.FindMinElement(aaSupply[CC[l].IndexI], aaStore[CC[l].IndexJ]);
+
+            //        C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
+
+
+            //        if ((aaSupply[CC[l].IndexI] - minEl == 0 && aaStore[CC[l].IndexJ] - minEl == 0) && (aaSupply[CC[l].IndexI] != 0 && aaStore[CC[l].IndexJ] != 0))
+            //        {
+            //            indexNullI[indNull] = CC[l].IndexI;
+            //            indexNullJ[indNull] = CC[l].IndexJ;
+            //            indNull++;
+            //        }
+
+            //        aaSupply[CC[l].IndexI] -= minEl;
+            //        aaStore[CC[l].IndexJ] -= minEl;
+            //    }
+
+            //    l++;
+            //}
+
+            //l = 0;
+            //while (l < n * m)
+            //{
+            //    if (CC[l].Index == 0)
+            //    {
+            //        minEl = Element.FindMinElement(aaSupply[CC[l].IndexI], aaStore[CC[l].IndexJ]);
+
+            //        C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
+            //        aaSupply[CC[l].IndexI] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
+            //        aaStore[CC[l].IndexJ] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
+            //    }
+
+            //    l++;
+            //}
+
+
+            //s = 0;
+            //for (i = 0; i < n; i++)
+            //{
+            //    for (j = 0; j < m; j++)
+            //    {
+            //        if (C[i, j].Value != 0)
+            //        {
+            //            s++;
+            //        }
+            //    }
+            //}
+
+
+            //indNull = 0;
+            //while (s < n + m - 1)
+            //{
+            //    int minInd = int.MaxValue;
+            //    int indI = 0;
+            //    int indJ = 0;
+
+            //    if (indexNullJ[indNull] + 1 <= m)
+            //    {
+            //        if (C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1;
+            //            indI = indexNullI[indNull];
+            //            indJ = indexNullJ[indNull] + 1;
+            //        }
+            //    }
+            //    if (indexNullJ[indNull] - 1 >= 0)
+            //    {
+            //        if (C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1;
+            //            indI = indexNullI[indNull];
+            //            indJ = indexNullJ[indNull] - 1;
+            //        }
+            //    }
+
+            //    if (indexNullI[indNull] + 1 <= n)
+            //    {
+            //        if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
+            //            indI = indexNullI[indNull] + 1;
+            //            indJ = indexNullJ[indNull];
+            //        }
+            //    }
+            //    if (indexNullI[indNull] - 1 >= 0)
+            //    {
+            //        if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
+            //            indI = indexNullI[indNull] - 1;
+            //            indJ = indexNullJ[indNull];
+            //        }
+            //    }
+            //    C[indI, indJ].Value = -1;
+            //    s++;
+            //    indNull++;
+            //}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             PrintPlan();
             //printZ();
         }
