@@ -13,7 +13,6 @@ C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.pdb
 C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe
 C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\bin\Debug\TranZadIA.pdb
 C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.Form1.resources
 C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
 C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
 C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe.config
@@ -102,3 +101,6 @@ C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\De
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.pdb
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.TranZad.resources
 C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadTwoIA.TranZadTwo.resources
+C:\Users\Андрей\Desktop\tranzadia\TranZadIA\obj\Debug\TranZadTwoIA.TranZadTwo.resources
+C:\Users\Андрей\Desktop\tranzadia\TranZadIA\obj\Debug\TranZadIA.TranZad.resources
+C:\Users\Андрей\Desktop\tranzadia\TranZadIA\obj\Debug\TranZadIA.TrainingForm.resources

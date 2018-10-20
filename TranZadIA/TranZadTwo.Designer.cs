@@ -126,7 +126,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 25);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(936, 463);
+            this.tabPage1.Size = new System.Drawing.Size(1036, 526);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Условия задачи";
             // 
@@ -155,7 +155,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(930, 457);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1030, 520);
             this.tableLayoutPanel1.TabIndex = 3;
             // 
             // gridD
@@ -174,7 +174,7 @@
             this.gridD.Name = "gridD";
             this.gridD.RowHeadersWidth = 64;
             this.gridD.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gridD.Size = new System.Drawing.Size(164, 387);
+            this.gridD.Size = new System.Drawing.Size(164, 450);
             this.gridD.TabIndex = 20;
             // 
             // dataGridViewTextBoxColumn2
@@ -206,7 +206,7 @@
             this.gridA.Name = "gridA";
             this.gridA.RowHeadersWidth = 64;
             this.gridA.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gridA.Size = new System.Drawing.Size(164, 387);
+            this.gridA.Size = new System.Drawing.Size(164, 450);
             this.gridA.TabIndex = 3;
             // 
             // dataGridViewTextBoxColumn1
@@ -238,7 +238,7 @@
             this.gridB.Name = "gridB";
             this.gridB.RowHeadersWidth = 64;
             this.gridB.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gridB.Size = new System.Drawing.Size(164, 387);
+            this.gridB.Size = new System.Drawing.Size(164, 450);
             this.gridB.TabIndex = 4;
             // 
             // MatrB
@@ -284,7 +284,7 @@
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label6.Location = new System.Drawing.Point(513, 32);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(414, 32);
+            this.label6.Size = new System.Drawing.Size(514, 32);
             this.label6.TabIndex = 10;
             this.label6.Text = "Тарифы";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -374,7 +374,7 @@
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel7.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel7.Size = new System.Drawing.Size(414, 387);
+            this.tableLayoutPanel7.Size = new System.Drawing.Size(514, 450);
             this.tableLayoutPanel7.TabIndex = 21;
             // 
             // gridCSmall
@@ -397,7 +397,7 @@
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.gridCSmall.DefaultCellStyle = dataGridViewCellStyle4;
             this.gridCSmall.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.gridCSmall.Location = new System.Drawing.Point(3, 216);
+            this.gridCSmall.Location = new System.Drawing.Point(3, 248);
             this.gridCSmall.Name = "gridCSmall";
             this.gridCSmall.RowHeadersWidth = 70;
             this.gridCSmall.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
@@ -407,7 +407,7 @@
             dataGridViewCellStyle5.NullValue = "0";
             this.gridCSmall.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.gridCSmall.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gridCSmall.Size = new System.Drawing.Size(408, 168);
+            this.gridCSmall.Size = new System.Drawing.Size(508, 199);
             this.gridCSmall.TabIndex = 8;
             // 
             // gridCBig
@@ -440,7 +440,7 @@
             dataGridViewCellStyle7.NullValue = "0";
             this.gridCBig.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.gridCBig.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gridCBig.Size = new System.Drawing.Size(408, 167);
+            this.gridCBig.Size = new System.Drawing.Size(508, 199);
             this.gridCBig.TabIndex = 6;
             // 
             // label2
@@ -449,9 +449,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(3, 173);
+            this.label2.Location = new System.Drawing.Point(3, 205);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(408, 40);
+            this.label2.Size = new System.Drawing.Size(508, 40);
             this.label2.TabIndex = 7;
             this.label2.Text = "Тарифы";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -771,7 +771,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TranZadTwo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Решение Транспортной Задачи";
+            this.Text = "Решение Двухэтапной Транспортной Задачи";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

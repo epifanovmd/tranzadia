@@ -754,8 +754,21 @@ namespace TranZadTwoIA
                 }
             }
 
-            // M-ки правой верхней таблицы
+            bool tmp = false;
             for (i = 0; i < n; i++)
+            {
+                for (j = 0; j < m; j++)
+                {
+                    if (C[i, j].Index1 == 0)
+                    {
+                        tmp = true;
+                    }
+                }
+            }
+
+
+            // M-ки правой верхней таблицы
+            for (i = 0; i < ((tmp == true)? n-1:n); i++)
             {
                 for (j = m; j < m + m; j++)
                 {
@@ -952,88 +965,101 @@ namespace TranZadTwoIA
 
 
 
+           
+            aaDemand = (int[])aDemand.Clone();
+            aaStore = (int[])aStore.Clone();
 
 
+            for (i = n; i < n+m; i++)
+            {
+                for (j = 0; j < m; j++)
+                {
+                    if (i-n==j)
+                    {
+                        aaStore[i-n] -= C[i, j].Value;
+                    }
+                    
+                }
+            }
 
 
+            CC = new El[m*m];
+            //сохраняем тарифы и их индексы 
+            l = 0;
+            for (i = n; i < n+m; i++)
+            {
+                for (j = m; j < m+m; j++)
+                {
+                    CC[l].Index = C[i, j].Index2;
+                    CC[l].IndexI = i;
+                    CC[l].IndexJ = j;
+                    l++;
+                }
+            }
+            //сортируем по тарифам (индексам)
+            l = 0;
+            foreach (var p in CC.OrderBy(itm => itm.Index))
+            {
+                CC[l] = p;
+                l++;
+            }
+
+            l = 0;
+            minEl = 0;
+            while (l < m * m)
+            {
+
+                if (CC[l].Index != 0)
+                {
+                    minEl = Element.FindMinElement(aaStore[CC[l].IndexI-n], aaDemand[CC[l].IndexJ-m]);
+
+                    C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
 
 
+                    if ((aaStore[CC[l].IndexI-n] - minEl == 0 && aaDemand[CC[l].IndexJ-m] - minEl == 0) && (aaStore[CC[l].IndexI-n] != 0 && aaDemand[CC[l].IndexJ-m] != 0))
+                    {
+                        indexNullI[indNull] = CC[l].IndexI;
+                        indexNullJ[indNull] = CC[l].IndexJ;
+                        indNull++;
+                    }
+
+                    aaStore[CC[l].IndexI-n] -= minEl;
+                    aaDemand[CC[l].IndexJ-m] -= minEl;
+                }
+
+                l++;
+            }
+
+            l = 0;
+            while (l < m * m)
+            {
+                if (CC[l].Index == 0)
+                {
+                    minEl = Element.FindMinElement(aaStore[CC[l].IndexI-n], aaDemand[CC[l].IndexJ-m]);
+
+                    C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
+                    aaStore[CC[l].IndexI-n] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
+                    aaDemand[CC[l].IndexJ-m] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
+                }
+
+                l++;
+            }
 
 
-            ////сохраняем тарифы и их индексы 
-            //l = 0;
-            //for (i = 0; i < n; i++)
-            //{
-            //    for (j = 0; j < m; j++)
-            //    {
-            //        CC[l].Index = C[i, j].Index2;
-            //        CC[l].IndexI = i;
-            //        CC[l].IndexJ = j;
-            //        l++;
-            //    }
-            //}
-            ////сортируем по тарифам (индексам)
-            //l = 0;
-            //foreach (var p in CC.OrderBy(itm => itm.Index))
-            //{
-            //    CC[l] = p;
-            //    l++;
-            //}
-
-            //l = 0;
-            //minEl = 0;
-            //while (l < n * m)
-            //{
-
-            //    if (CC[l].Index != 0)
-            //    {
-            //        minEl = Element.FindMinElement(aaSupply[CC[l].IndexI], aaStore[CC[l].IndexJ]);
-
-            //        C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
+            s = 0;
+            for (i = n; i < n+m; i++)
+            {
+                for (j = m; j < m+m; j++)
+                {
+                    if (C[i, j].Value != 0)
+                    {
+                        s++;
+                    }
+                }
+            }
 
 
-            //        if ((aaSupply[CC[l].IndexI] - minEl == 0 && aaStore[CC[l].IndexJ] - minEl == 0) && (aaSupply[CC[l].IndexI] != 0 && aaStore[CC[l].IndexJ] != 0))
-            //        {
-            //            indexNullI[indNull] = CC[l].IndexI;
-            //            indexNullJ[indNull] = CC[l].IndexJ;
-            //            indNull++;
-            //        }
-
-            //        aaSupply[CC[l].IndexI] -= minEl;
-            //        aaStore[CC[l].IndexJ] -= minEl;
-            //    }
-
-            //    l++;
-            //}
-
-            //l = 0;
-            //while (l < n * m)
-            //{
-            //    if (CC[l].Index == 0)
-            //    {
-            //        minEl = Element.FindMinElement(aaSupply[CC[l].IndexI], aaStore[CC[l].IndexJ]);
-
-            //        C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
-            //        aaSupply[CC[l].IndexI] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
-            //        aaStore[CC[l].IndexJ] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
-            //    }
-
-            //    l++;
-            //}
-
-
-            //s = 0;
-            //for (i = 0; i < n; i++)
-            //{
-            //    for (j = 0; j < m; j++)
-            //    {
-            //        if (C[i, j].Value != 0)
-            //        {
-            //            s++;
-            //        }
-            //    }
-            //}
-
+            // ищем куда ставить ложный ноль
 
             //indNull = 0;
             //while (s < n + m - 1)
@@ -1061,28 +1087,28 @@ namespace TranZadTwoIA
             //        }
             //    }
 
-            //    if (indexNullI[indNull] + 1 <= n)
-            //    {
-            //        if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
-            //        {
-            //            minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
-            //            indI = indexNullI[indNull] + 1;
-            //            indJ = indexNullJ[indNull];
-            //        }
-            //    }
-            //    if (indexNullI[indNull] - 1 >= 0)
-            //    {
-            //        if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
-            //        {
-            //            minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
-            //            indI = indexNullI[indNull] - 1;
-            //            indJ = indexNullJ[indNull];
-            //        }
-            //    }
-            //    C[indI, indJ].Value = -1;
-            //    s++;
-            //    indNull++;
-            //}
+                //    if (indexNullI[indNull] + 1 <= n)
+                //    {
+                //        if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
+                //        {
+                //            minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
+                //            indI = indexNullI[indNull] + 1;
+                //            indJ = indexNullJ[indNull];
+                //        }
+                //    }
+                //    if (indexNullI[indNull] - 1 >= 0)
+                //    {
+                //        if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
+                //        {
+                //            minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
+                //            indI = indexNullI[indNull] - 1;
+                //            indJ = indexNullJ[indNull];
+                //        }
+                //    }
+                //    C[indI, indJ].Value = -1;
+                //    s++;
+                //    indNull++;
+                //}
 
 
 
@@ -1094,29 +1120,13 @@ namespace TranZadTwoIA
 
 
 
+            
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            PrintPlan();
+                PrintPlan();
             //printZ();
         }
 
