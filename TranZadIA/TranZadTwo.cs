@@ -643,17 +643,17 @@ namespace TranZadTwoIA
                     }
                 }
             }
-            //for (int i = 0; i < n + m; i++)
-            //{
-            //    for (int j = 0; j < m + m; j++)
-            //    {
-            //        C[i, j].Delta = 0;
-            //        if (C[i, j].Value == 0)
-            //        {
-            //            C[i, j].Delta = ((i >= n || j >= m) ? U[i] + V[j] - C[i, j].Index2 : U[i] + V[j] - C[i, j].Index1);
-            //        }
-            //    }
-            //}
+            for (int i = 0; i < n + m; i++)
+            {
+                for (int j = 0; j < m + m; j++)
+                {
+                    C[i, j].Delta = 0;
+                    if (C[i, j].Value == 0)
+                    {
+                        C[i, j].Delta = ((i >= n || j >= m) ? U[i] + V[j] - C[i, j].Index2 : U[i] + V[j] - C[i, j].Index1);
+                    }
+                }
+            }
         }
         private ArrayList FindPath(int u, int v)
         {
