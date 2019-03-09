@@ -104,3 +104,14 @@ C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\De
 C:\Users\Андрей\Desktop\tranzadia\TranZadIA\obj\Debug\TranZadTwoIA.TranZadTwo.resources
 C:\Users\Андрей\Desktop\tranzadia\TranZadIA\obj\Debug\TranZadIA.TranZad.resources
 C:\Users\Андрей\Desktop\tranzadia\TranZadIA\obj\Debug\TranZadIA.TrainingForm.resources
+C:\development\tranzadia\TranZadIA\bin\Debug\TranZadIA.exe.config
+C:\development\tranzadia\TranZadIA\bin\Debug\TranZadIA.exe
+C:\development\tranzadia\TranZadIA\bin\Debug\TranZadIA.pdb
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadTwoIA.TranZadTwo.resources
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.TranZad.resources
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.TrainingForm.resources
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.exe
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.pdb

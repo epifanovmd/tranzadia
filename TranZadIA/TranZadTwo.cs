@@ -274,24 +274,24 @@ namespace TranZadTwoIA
         {
             UVDOutBtn.Enabled = false;
             NextPlanBtn.Enabled = true;
-            if (NotOptimal())
-            {
-                getPrintQ();
-            }
+            //if (NotOptimal())
+            //{
+            //    getPrintQ();
+            //}
             PrintUVDelta();
-            if (!NotOptimal())
-            {
-                UVDOutBtn.Visible = false;
-                NextPlanBtn.Visible = false;
-                btnSolve.Enabled = true;
-                lblOptPlan.Visible = true;
-                backTable.Visible = true;
-                nextTable.Visible = true;
-                nextTable.Enabled = false;
+            //if (!NotOptimal())
+            //{
+            //    UVDOutBtn.Visible = false;
+            //    NextPlanBtn.Visible = false;
+            //    btnSolve.Enabled = true;
+            //    lblOptPlan.Visible = true;
+            //    backTable.Visible = true;
+            //    nextTable.Visible = true;
+            //    nextTable.Enabled = false;
 
-            }
-            PrintQmin();
-            SaveResult();
+            //}
+            //PrintQmin();
+            //SaveResult();
         }
         private void printZ()
         {
@@ -523,28 +523,28 @@ namespace TranZadTwoIA
             GetUVDelta();
             gridDelta.Visible = true;
             //инициализируем таблицу U, V
-            gridSupport.RowCount = n + 1;
-            gridSupport.ColumnCount = m + 1;
-            gridSupport.Rows[n].HeaderCell.Value = "Vj";
-            gridSupport.Columns[m].HeaderText = "Ui";
-            gridSupport.Rows[0].Cells[m].Value = "Ui = " + 0.ToString();
+            gridSupport.RowCount = n + m + 1;
+            gridSupport.ColumnCount = m + m + 1;
+            gridSupport.Rows[n + m].HeaderCell.Value = "Vj";
+            gridSupport.Columns[m + m].HeaderText = "Ui";
+            gridSupport.Rows[0].Cells[m + m].Value = "Ui = " + 0.ToString();
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + m; i++)
             {
-                gridSupport.Rows[i].Cells[m].Value = "\nU" + (i + 1) + " = " + U[i];
+                gridSupport.Rows[i].Cells[m + m].Value = "\nU" + (i + 1) + " = " + U[i];
             }
-            for (int j = 0; j < m; j++)
+            for (int j = 0; j < m + m; j++)
             {
 
-                gridSupport.Rows[n].Cells[j].Value = "\nV" + (j + 1) + " = " + V[j];
+                gridSupport.Rows[n + m].Cells[j].Value = "\nV" + (j + 1) + " = " + V[j];
             }
-            gridSupport.Rows[n].Cells[m].Value = "";
+            gridSupport.Rows[n + m].Cells[m + m].Value = "";
 
             //считаем колличество пустых клеток
             int k = 0;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + m; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m + m; j++)
                 {
                     if (C[i, j].Value == 0)
                     {
@@ -559,9 +559,9 @@ namespace TranZadTwoIA
             gridDelta.RowHeadersWidth = 85;
             k = 0;
             int deltaMax = 0;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + m; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m + m; j++)
                 {
                     if (C[i, j].Value == 0)
                     {
@@ -582,59 +582,60 @@ namespace TranZadTwoIA
         private void GetUVDelta()
         {
             //обнуляем массивы U и V 
-            U = new int[n];
-            V = new int[m];
+            U = new int[n + m];
+            V = new int[m + m];
 
             //доп массивы для проверки пустых U и V
-            bool[] Uf = new bool[n];
-            bool[] Vf = new bool[m];
+            bool[] Uf = new bool[n + m];
+            bool[] Vf = new bool[m + m];
             Uf[0] = true;
 
             //сносим с первой строчки индексы в V 
-            for (int i = 0; i < m; i++)
+            for (int i = 0; i < m + m; i++)
             {
-                if (C[0, i].Value != 0)
+                if (C[0, i].Value != 0 && C[0, i].Value != -1 && C[0, i].Value != -11)
                 {
                     Vf[i] = true;
-                    V[i] = C[0, i].Index1;
+                    V[i] = (i >= n) ? C[0, i].Index2 : C[0, i].Index1;
                 }
             }
 
             //считаем U и V 
             bool flag = true;
+            int uuu = 0;
+            int vvv = 0;
             while (flag)
             {
                 flag = false;
-                for (int i = 1; i < n; i++)
+                for (int i = 1; i < n + m; i++)
                 {
-                    for (int j = 0; j < m; j++)
+                    for (int j = 0; j < m + m; j++)
                     {
-                        if (C[i, j].Value != 0)
+                        if (C[i, j].Value != 0 && C[i, j].Value != -1 && C[i, j].Value != -11)
                         {
                             if (Vf[j] != false)
                             {
+                                uuu = Convert.ToInt32((i >= n || j >= m) ? C[i, j].Index2 - V[j] : C[i, j].Index1 - V[j]);
+                                U[i] = uuu;
                                 Uf[i] = true;
-                                U[i] = Convert.ToInt32(C[i, j].Index1 - V[j]);
                             }
-                            else
+                            else if (Uf[i] != false)
                             {
-                                if (Uf[i] != false)
-                                {
-                                    Vf[j] = true;
-                                    V[j] = Convert.ToInt32(C[i, j].Index1 - U[i]);
-                                }
+                                vvv = Convert.ToInt32((i >= n || j >= m) ? C[i, j].Index2 - U[i] : C[i, j].Index1 - U[i]);
+                                V[j] = vvv;
+                                Vf[j] = true;
                             }
                         }
                     }
                 }
-                for (int i = 1; i < n; i++)
+                for (int i = 1; i < n + m; i++)
                 {
                     if (Uf[i] == false)
                     {
                         flag = true;
                     }
                 }
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m + m; j++)
                 {
                     if (Vf[j] == false)
                     {
@@ -642,17 +643,17 @@ namespace TranZadTwoIA
                     }
                 }
             }
-            for (int i = 0; i < n; i++)
-            {
-                for (int j = 0; j < m; j++)
-                {
-                    C[i, j].Delta = 0;
-                    if (C[i, j].Value == 0)
-                    {
-                        C[i, j].Delta = (U[i] + V[j] - C[i, j].Index1);
-                    }
-                }
-            }
+            //for (int i = 0; i < n + m; i++)
+            //{
+            //    for (int j = 0; j < m + m; j++)
+            //    {
+            //        C[i, j].Delta = 0;
+            //        if (C[i, j].Value == 0)
+            //        {
+            //            C[i, j].Delta = ((i >= n || j >= m) ? U[i] + V[j] - C[i, j].Index2 : U[i] + V[j] - C[i, j].Index1);
+            //        }
+            //    }
+            //}
         }
         private ArrayList FindPath(int u, int v)
         {
@@ -768,7 +769,7 @@ namespace TranZadTwoIA
 
 
             // M-ки правой верхней таблицы
-            for (i = 0; i < ((tmp == true)? n-1:n); i++)
+            for (i = 0; i < ((tmp == true) ? n - 1 : n); i++)
             {
                 for (j = m; j < m + m; j++)
                 {
@@ -918,12 +919,12 @@ namespace TranZadTwoIA
 
             for (i = 0; i < m; i++)
             {
-                if (aaStore[i] !=0)
+                if (aaStore[i] != 0)
                 {
 
                     ind = i;
                     value = aaStore[i];
-                    C[i+n,i].Value = aaStore[i];
+                    C[i + n, i].Value = aaStore[i];
                 }
 
             }
@@ -965,30 +966,30 @@ namespace TranZadTwoIA
 
 
 
-           
+
             aaDemand = (int[])aDemand.Clone();
             aaStore = (int[])aStore.Clone();
 
 
-            for (i = n; i < n+m; i++)
+            for (i = n; i < n + m; i++)
             {
                 for (j = 0; j < m; j++)
                 {
-                    if (i-n==j)
+                    if (i - n == j)
                     {
-                        aaStore[i-n] -= C[i, j].Value;
+                        aaStore[i - n] -= C[i, j].Value;
                     }
-                    
+
                 }
             }
 
 
-            CC = new El[m*m];
+            CC = new El[m * m];
             //сохраняем тарифы и их индексы 
             l = 0;
-            for (i = n; i < n+m; i++)
+            for (i = n; i < n + m; i++)
             {
-                for (j = m; j < m+m; j++)
+                for (j = m; j < m + m; j++)
                 {
                     CC[l].Index = C[i, j].Index2;
                     CC[l].IndexI = i;
@@ -1011,20 +1012,20 @@ namespace TranZadTwoIA
 
                 if (CC[l].Index != 0)
                 {
-                    minEl = Element.FindMinElement(aaStore[CC[l].IndexI-n], aaDemand[CC[l].IndexJ-m]);
+                    minEl = Element.FindMinElement(aaStore[CC[l].IndexI - n], aaDemand[CC[l].IndexJ - m]);
 
                     C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
 
 
-                    if ((aaStore[CC[l].IndexI-n] - minEl == 0 && aaDemand[CC[l].IndexJ-m] - minEl == 0) && (aaStore[CC[l].IndexI-n] != 0 && aaDemand[CC[l].IndexJ-m] != 0))
+                    if ((aaStore[CC[l].IndexI - n] - minEl == 0 && aaDemand[CC[l].IndexJ - m] - minEl == 0) && (aaStore[CC[l].IndexI - n] != 0 && aaDemand[CC[l].IndexJ - m] != 0))
                     {
                         indexNullI[indNull] = CC[l].IndexI;
                         indexNullJ[indNull] = CC[l].IndexJ;
                         indNull++;
                     }
 
-                    aaStore[CC[l].IndexI-n] -= minEl;
-                    aaDemand[CC[l].IndexJ-m] -= minEl;
+                    aaStore[CC[l].IndexI - n] -= minEl;
+                    aaDemand[CC[l].IndexJ - m] -= minEl;
                 }
 
                 l++;
@@ -1035,11 +1036,11 @@ namespace TranZadTwoIA
             {
                 if (CC[l].Index == 0)
                 {
-                    minEl = Element.FindMinElement(aaStore[CC[l].IndexI-n], aaDemand[CC[l].IndexJ-m]);
+                    minEl = Element.FindMinElement(aaStore[CC[l].IndexI - n], aaDemand[CC[l].IndexJ - m]);
 
                     C[CC[l].IndexI, CC[l].IndexJ].Value = minEl;
-                    aaStore[CC[l].IndexI-n] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
-                    aaDemand[CC[l].IndexJ-m] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
+                    aaStore[CC[l].IndexI - n] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
+                    aaDemand[CC[l].IndexJ - m] -= C[CC[l].IndexI, CC[l].IndexJ].Value;
                 }
 
                 l++;
@@ -1047,9 +1048,9 @@ namespace TranZadTwoIA
 
 
             s = 0;
-            for (i = n; i < n+m; i++)
+            for (i = n; i < n + m; i++)
             {
-                for (j = m; j < m+m; j++)
+                for (j = m; j < m + m; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -1087,28 +1088,28 @@ namespace TranZadTwoIA
             //        }
             //    }
 
-                //    if (indexNullI[indNull] + 1 <= n)
-                //    {
-                //        if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
-                //        {
-                //            minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
-                //            indI = indexNullI[indNull] + 1;
-                //            indJ = indexNullJ[indNull];
-                //        }
-                //    }
-                //    if (indexNullI[indNull] - 1 >= 0)
-                //    {
-                //        if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
-                //        {
-                //            minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
-                //            indI = indexNullI[indNull] - 1;
-                //            indJ = indexNullJ[indNull];
-                //        }
-                //    }
-                //    C[indI, indJ].Value = -1;
-                //    s++;
-                //    indNull++;
-                //}
+            //    if (indexNullI[indNull] + 1 <= n)
+            //    {
+            //        if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
+            //            indI = indexNullI[indNull] + 1;
+            //            indJ = indexNullJ[indNull];
+            //        }
+            //    }
+            //    if (indexNullI[indNull] - 1 >= 0)
+            //    {
+            //        if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
+            //        {
+            //            minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
+            //            indI = indexNullI[indNull] - 1;
+            //            indJ = indexNullJ[indNull];
+            //        }
+            //    }
+            //    C[indI, indJ].Value = -1;
+            //    s++;
+            //    indNull++;
+            //}
 
 
 
@@ -1120,13 +1121,13 @@ namespace TranZadTwoIA
 
 
 
-            
 
 
 
 
 
-                PrintPlan();
+
+            PrintPlan();
             //printZ();
         }
 
