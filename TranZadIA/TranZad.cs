@@ -47,7 +47,6 @@ namespace TranZadIA
 
         public List<Element[,]> saveTableArray;
         public Object[] Csave;
-
         public List<int[]> saveTableU;
         public Object[] Usave;
         public List<int[]> saveTableV;
