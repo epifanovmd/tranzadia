@@ -24,60 +24,118 @@ namespace TranZadTwoIA
 
 
 
+            //RowCount.Value = 3;
+            //ColumnCount.Value = 3;
+
+            //gridA.RowCount = 3;
+            //gridA.Rows[0].Cells[0].Value = 247;
+            //gridA.Rows[1].Cells[0].Value = 382;
+            //gridA.Rows[2].Cells[0].Value = 249;
+
+
+
+            //gridB.RowCount = 3;
+            //gridB.Rows[0].Cells[0].Value = 542;
+            //gridB.Rows[1].Cells[0].Value = 179;
+            //gridB.Rows[2].Cells[0].Value = 203;
+
+
+
+            //gridD.RowCount = 3;
+            //gridD.Rows[0].Cells[0].Value = 458;
+            //gridD.Rows[1].Cells[0].Value = 321;
+            //gridD.Rows[2].Cells[0].Value = 387;
+
+
+            //gridCBig.RowCount = 3;
+            //gridCBig.ColumnCount = 3;
+            //gridCBig.Rows[0].Cells[0].Value = 6;
+            //gridCBig.Rows[1].Cells[0].Value = 8;
+            //gridCBig.Rows[2].Cells[0].Value = 2;
+
+
+            //gridCBig.Rows[0].Cells[1].Value = 4;
+            //gridCBig.Rows[1].Cells[1].Value = 3;
+            //gridCBig.Rows[2].Cells[1].Value = 7;
+
+            //gridCBig.Rows[0].Cells[2].Value = 8;
+            //gridCBig.Rows[1].Cells[2].Value = 5;
+            //gridCBig.Rows[2].Cells[2].Value = 4;
+
+
+
+            //gridCSmall.RowCount = 3;
+            //gridCSmall.ColumnCount = 3;
+            //gridCSmall.Rows[0].Cells[0].Value = 28;
+            //gridCSmall.Rows[1].Cells[0].Value = 25;
+            //gridCSmall.Rows[2].Cells[0].Value = 24;
+
+
+            //gridCSmall.Rows[0].Cells[1].Value = 27;
+            //gridCSmall.Rows[1].Cells[1].Value = 23;
+            //gridCSmall.Rows[2].Cells[1].Value = 24;
+
+            //gridCSmall.Rows[0].Cells[2].Value = 12;
+            //gridCSmall.Rows[1].Cells[2].Value = 18;
+            //gridCSmall.Rows[2].Cells[2].Value = 26;
+
+
+
+
             RowCount.Value = 3;
             ColumnCount.Value = 3;
 
             gridA.RowCount = 3;
-            gridA.Rows[0].Cells[0].Value = 247;
-            gridA.Rows[1].Cells[0].Value = 382;
-            gridA.Rows[2].Cells[0].Value = 249;
+            gridA.Rows[0].Cells[0].Value = 120;
+            gridA.Rows[1].Cells[0].Value = 150;
+            gridA.Rows[2].Cells[0].Value = 170;
 
 
 
             gridB.RowCount = 3;
-            gridB.Rows[0].Cells[0].Value = 542;
-            gridB.Rows[1].Cells[0].Value = 179;
-            gridB.Rows[2].Cells[0].Value = 203;
+            gridB.Rows[0].Cells[0].Value = 110;
+            gridB.Rows[1].Cells[0].Value = 140;
+            gridB.Rows[2].Cells[0].Value = 150;
 
 
 
             gridD.RowCount = 3;
-            gridD.Rows[0].Cells[0].Value = 458;
-            gridD.Rows[1].Cells[0].Value = 321;
-            gridD.Rows[2].Cells[0].Value = 387;
+            gridD.Rows[0].Cells[0].Value = 200;
+            gridD.Rows[1].Cells[0].Value = 250;
+            gridD.Rows[2].Cells[0].Value = 150;
 
 
             gridCBig.RowCount = 3;
             gridCBig.ColumnCount = 3;
-            gridCBig.Rows[0].Cells[0].Value = 6;
-            gridCBig.Rows[1].Cells[0].Value = 8;
-            gridCBig.Rows[2].Cells[0].Value = 2;
+            gridCBig.Rows[0].Cells[0].Value = 7;
+            gridCBig.Rows[1].Cells[0].Value = 4;
+            gridCBig.Rows[2].Cells[0].Value = 8;
 
 
-            gridCBig.Rows[0].Cells[1].Value = 4;
-            gridCBig.Rows[1].Cells[1].Value = 3;
-            gridCBig.Rows[2].Cells[1].Value = 7;
+            gridCBig.Rows[0].Cells[1].Value = 8;
+            gridCBig.Rows[1].Cells[1].Value = 9;
+            gridCBig.Rows[2].Cells[1].Value = 3;
 
-            gridCBig.Rows[0].Cells[2].Value = 8;
+            gridCBig.Rows[0].Cells[2].Value = 6;
             gridCBig.Rows[1].Cells[2].Value = 5;
-            gridCBig.Rows[2].Cells[2].Value = 4;
+            gridCBig.Rows[2].Cells[2].Value = 6;
 
 
 
             gridCSmall.RowCount = 3;
             gridCSmall.ColumnCount = 3;
-            gridCSmall.Rows[0].Cells[0].Value = 28;
-            gridCSmall.Rows[1].Cells[0].Value = 25;
-            gridCSmall.Rows[2].Cells[0].Value = 24;
+            gridCSmall.Rows[0].Cells[0].Value = 14;
+            gridCSmall.Rows[1].Cells[0].Value = 17;
+            gridCSmall.Rows[2].Cells[0].Value = 12;
 
 
-            gridCSmall.Rows[0].Cells[1].Value = 27;
-            gridCSmall.Rows[1].Cells[1].Value = 23;
-            gridCSmall.Rows[2].Cells[1].Value = 24;
+            gridCSmall.Rows[0].Cells[1].Value = 16;
+            gridCSmall.Rows[1].Cells[1].Value = 11;
+            gridCSmall.Rows[2].Cells[1].Value = 13;
 
-            gridCSmall.Rows[0].Cells[2].Value = 12;
+            gridCSmall.Rows[0].Cells[2].Value = 10;
             gridCSmall.Rows[1].Cells[2].Value = 18;
-            gridCSmall.Rows[2].Cells[2].Value = 26;
+            gridCSmall.Rows[2].Cells[2].Value = 15;
 
 
 
@@ -174,8 +232,8 @@ namespace TranZadTwoIA
                 gridCBig.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
                 gridCBig.Columns[m - 1].HeaderText = "D" + m.ToString();
 
-                gridD.RowCount = m;
-                gridD.Rows[m - 1].HeaderCell.Value = "D" + m.ToString();
+                gridD.RowCount = n;
+                gridD.Rows[n - 1].HeaderCell.Value = "D" + n.ToString();
 
 
 
@@ -244,9 +302,9 @@ namespace TranZadTwoIA
         private void PrintQmin()
         {
             int nMin = nVeryLargeNumber;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + m; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m + m; j++)
                 {
                     if (C[i, j].Q == "-Q")
                     {
@@ -274,32 +332,32 @@ namespace TranZadTwoIA
         {
             UVDOutBtn.Enabled = false;
             NextPlanBtn.Enabled = true;
-            //if (NotOptimal())
-            //{
-            //    getPrintQ();
-            //}
+            if (NotOptimal())
+            {
+                getPrintQ();
+            }
             PrintUVDelta();
-            //if (!NotOptimal())
-            //{
-            //    UVDOutBtn.Visible = false;
-            //    NextPlanBtn.Visible = false;
-            //    btnSolve.Enabled = true;
-            //    lblOptPlan.Visible = true;
-            //    backTable.Visible = true;
-            //    nextTable.Visible = true;
-            //    nextTable.Enabled = false;
+            if (!NotOptimal())
+            {
+                UVDOutBtn.Visible = false;
+                NextPlanBtn.Visible = false;
+                btnSolve.Enabled = true;
+                lblOptPlan.Visible = true;
+                backTable.Visible = true;
+                nextTable.Visible = true;
+                nextTable.Enabled = false;
 
-            //}
-            //PrintQmin();
-            //SaveResult();
+            }
+            PrintQmin();
+            SaveResult();
         }
         private void printZ()
         {
             //считаем и выводим сумму
             int Z = 0;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + m; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m + m; j++)
                 {
                     if (C[i, j].Value == -1)
                         Z += C[i, j].Index1 * (C[i, j].Value + 1);
@@ -327,10 +385,11 @@ namespace TranZadTwoIA
             for (int i = 0; i < n; i++)
             {
                 aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
+                aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
             }
             for (int i = 0; i < m; i++)
             {
-                aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
+
             }
 
 
@@ -410,7 +469,7 @@ namespace TranZadTwoIA
                         {
                             gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                             gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-                            gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + (C[i, j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + "--";
                         }
                         else
                         {
@@ -546,7 +605,7 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m + m; j++)
                 {
-                    if (C[i, j].Value == 0)
+                    if (C[i, j].Value == 0 || C[i, j].Value == -1)
                     {
                         //колличество пустых клеток
                         k++;
@@ -563,7 +622,7 @@ namespace TranZadTwoIA
             {
                 for (int j = 0; j < m + m; j++)
                 {
-                    if (C[i, j].Value == 0)
+                    if (C[i, j].Value == 0 || C[i, j].Value == -1)
                     {
                         gridDelta.Rows[k].HeaderCell.Value = "∆[" + (i + 1) + "," + (j + 1) + "]";
                         gridDelta.Rows[k].Cells[0].Value = (C[i, j].Delta).ToString();
@@ -664,9 +723,9 @@ namespace TranZadTwoIA
         }
         private bool LookHorizontaly(ref ArrayList aPath, int u, int v, int u1, int v1)
         {
-            for (int i = 0; i < m; i++)
+            for (int i = 0; i < m + m; i++)
             {
-                if (i != v && C[u, i].Value != 0)
+                if (i != v && C[u, i].Value != 0 && C[u, i].Value != -11)
                 {
                     if (i == v1)
                     {
@@ -684,9 +743,9 @@ namespace TranZadTwoIA
         }
         private bool LookVerticaly(ref ArrayList aPath, int u, int v, int u1, int v1)
         {
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + m; i++)
             {
-                if (i != u && C[i, v].Value != 0)
+                if (i != u && C[i, v].Value != 0 && C[i, v].Value != -11)
                 {
                     if (LookHorizontaly(ref aPath, i, v, u1, v1))
                     {
@@ -715,11 +774,12 @@ namespace TranZadTwoIA
             for (i = 0; i < n; i++)
             {
                 aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
-            }
-            for (i = 0; i < m; i++)
-            {
                 aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
             }
+            //for (i = 0; i < n; i++)
+            //{
+
+            //}
 
 
             for (i = 0; i < m; i++)
@@ -1128,7 +1188,7 @@ namespace TranZadTwoIA
 
 
             PrintPlan();
-            //printZ();
+            printZ();
         }
 
 
@@ -1138,9 +1198,9 @@ namespace TranZadTwoIA
             int x;
             GetUVDelta();
 
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + m; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m + m; j++)
                 {
                     x = C[i, j].Delta;
                     if (x > nMax)
@@ -1192,6 +1252,12 @@ namespace TranZadTwoIA
                 {
 
                     C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value -= nMin;
+
+                    if (C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value == 0)
+                    {
+                        C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value = -1;
+                    }
+
                     if (C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value == -1)
                         C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value += (nMin + 1);
                     else
@@ -1205,9 +1271,9 @@ namespace TranZadTwoIA
         private void CountBaseCell()
         {   // кол-во базисных клеток
             int s = 0;
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + m; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m + m; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -1215,11 +1281,11 @@ namespace TranZadTwoIA
                     }
                 }
             }
-            while (s < n + m - 1)
+            while (s < n + m + m + m - 1)
             {
-                for (int i = n - 1; i >= 0; i--)
+                for (int i = n + m - 1; i >= 0; i--)
                 {
-                    for (int j = m - 1; j >= 0; j--)
+                    for (int j = m + m - 1; j >= 0; j--)
                     {
                         if (C[i, j].Q == "-Q")
                         {
@@ -1236,9 +1302,9 @@ namespace TranZadTwoIA
         }
         private void ClearQ()
         {
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < n + m; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m + m; j++)
                 {
                     C[i, j].Q = "";
                 }
@@ -1259,21 +1325,28 @@ namespace TranZadTwoIA
                 C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Q = "+Q";
 
             }
-            gridSupport.RowCount = n;
-            gridSupport.ColumnCount = m;
-            for (int i = 0; i < n; i++)
+            gridSupport.RowCount = n + m;
+            gridSupport.ColumnCount = m + m;
+            for (int i = 0; i < n + m; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < m + m; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
                         if (C[i, j].Value == -1)
                         {
-                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + C[i, j].Index1 + "\n" + (C[i, j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + C[i, j].Index1 + "\n" + "--";
                         }
                         else
                         {
-                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + C[i, j].Index1 + "\n" + C[i, j].Value.ToString();
+                            if (C[i, j].Value == -11)
+                            {
+                                gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + "" + "\n" + "M";
+                            }
+                            else
+                            {
+                                gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + C[i, j].Index1 + "\n" + C[i, j].Value.ToString();
+                            }
                         }
                     }
                     else
