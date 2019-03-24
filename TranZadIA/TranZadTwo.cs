@@ -24,118 +24,118 @@ namespace TranZadTwoIA
 
 
 
-            //RowCount.Value = 3;
-            //ColumnCount.Value = 3;
-
-            //gridA.RowCount = 3;
-            //gridA.Rows[0].Cells[0].Value = 247;
-            //gridA.Rows[1].Cells[0].Value = 382;
-            //gridA.Rows[2].Cells[0].Value = 249;
-
-
-
-            //gridB.RowCount = 3;
-            //gridB.Rows[0].Cells[0].Value = 542;
-            //gridB.Rows[1].Cells[0].Value = 179;
-            //gridB.Rows[2].Cells[0].Value = 203;
-
-
-
-            //gridD.RowCount = 3;
-            //gridD.Rows[0].Cells[0].Value = 458;
-            //gridD.Rows[1].Cells[0].Value = 321;
-            //gridD.Rows[2].Cells[0].Value = 387;
-
-
-            //gridCBig.RowCount = 3;
-            //gridCBig.ColumnCount = 3;
-            //gridCBig.Rows[0].Cells[0].Value = 6;
-            //gridCBig.Rows[1].Cells[0].Value = 8;
-            //gridCBig.Rows[2].Cells[0].Value = 2;
-
-
-            //gridCBig.Rows[0].Cells[1].Value = 4;
-            //gridCBig.Rows[1].Cells[1].Value = 3;
-            //gridCBig.Rows[2].Cells[1].Value = 7;
-
-            //gridCBig.Rows[0].Cells[2].Value = 8;
-            //gridCBig.Rows[1].Cells[2].Value = 5;
-            //gridCBig.Rows[2].Cells[2].Value = 4;
-
-
-
-            //gridCSmall.RowCount = 3;
-            //gridCSmall.ColumnCount = 3;
-            //gridCSmall.Rows[0].Cells[0].Value = 28;
-            //gridCSmall.Rows[1].Cells[0].Value = 25;
-            //gridCSmall.Rows[2].Cells[0].Value = 24;
-
-
-            //gridCSmall.Rows[0].Cells[1].Value = 27;
-            //gridCSmall.Rows[1].Cells[1].Value = 23;
-            //gridCSmall.Rows[2].Cells[1].Value = 24;
-
-            //gridCSmall.Rows[0].Cells[2].Value = 12;
-            //gridCSmall.Rows[1].Cells[2].Value = 18;
-            //gridCSmall.Rows[2].Cells[2].Value = 26;
-
-
-
-
             RowCount.Value = 3;
             ColumnCount.Value = 3;
 
             gridA.RowCount = 3;
-            gridA.Rows[0].Cells[0].Value = 120;
-            gridA.Rows[1].Cells[0].Value = 150;
-            gridA.Rows[2].Cells[0].Value = 170;
+            gridA.Rows[0].Cells[0].Value = 247;
+            gridA.Rows[1].Cells[0].Value = 382;
+            gridA.Rows[2].Cells[0].Value = 249;
 
 
 
             gridB.RowCount = 3;
-            gridB.Rows[0].Cells[0].Value = 110;
-            gridB.Rows[1].Cells[0].Value = 140;
-            gridB.Rows[2].Cells[0].Value = 150;
+            gridB.Rows[0].Cells[0].Value = 542;
+            gridB.Rows[1].Cells[0].Value = 179;
+            gridB.Rows[2].Cells[0].Value = 203;
 
 
 
             gridD.RowCount = 3;
-            gridD.Rows[0].Cells[0].Value = 200;
-            gridD.Rows[1].Cells[0].Value = 250;
-            gridD.Rows[2].Cells[0].Value = 150;
+            gridD.Rows[0].Cells[0].Value = 458;
+            gridD.Rows[1].Cells[0].Value = 321;
+            gridD.Rows[2].Cells[0].Value = 387;
 
 
             gridCBig.RowCount = 3;
             gridCBig.ColumnCount = 3;
-            gridCBig.Rows[0].Cells[0].Value = 7;
-            gridCBig.Rows[1].Cells[0].Value = 4;
-            gridCBig.Rows[2].Cells[0].Value = 8;
+            gridCBig.Rows[0].Cells[0].Value = 6;
+            gridCBig.Rows[1].Cells[0].Value = 8;
+            gridCBig.Rows[2].Cells[0].Value = 2;
 
 
-            gridCBig.Rows[0].Cells[1].Value = 8;
-            gridCBig.Rows[1].Cells[1].Value = 9;
-            gridCBig.Rows[2].Cells[1].Value = 3;
+            gridCBig.Rows[0].Cells[1].Value = 4;
+            gridCBig.Rows[1].Cells[1].Value = 3;
+            gridCBig.Rows[2].Cells[1].Value = 7;
 
-            gridCBig.Rows[0].Cells[2].Value = 6;
+            gridCBig.Rows[0].Cells[2].Value = 8;
             gridCBig.Rows[1].Cells[2].Value = 5;
-            gridCBig.Rows[2].Cells[2].Value = 6;
+            gridCBig.Rows[2].Cells[2].Value = 4;
 
 
 
             gridCSmall.RowCount = 3;
             gridCSmall.ColumnCount = 3;
-            gridCSmall.Rows[0].Cells[0].Value = 14;
-            gridCSmall.Rows[1].Cells[0].Value = 17;
-            gridCSmall.Rows[2].Cells[0].Value = 12;
+            gridCSmall.Rows[0].Cells[0].Value = 28;
+            gridCSmall.Rows[1].Cells[0].Value = 25;
+            gridCSmall.Rows[2].Cells[0].Value = 24;
 
 
-            gridCSmall.Rows[0].Cells[1].Value = 16;
-            gridCSmall.Rows[1].Cells[1].Value = 11;
-            gridCSmall.Rows[2].Cells[1].Value = 13;
+            gridCSmall.Rows[0].Cells[1].Value = 27;
+            gridCSmall.Rows[1].Cells[1].Value = 23;
+            gridCSmall.Rows[2].Cells[1].Value = 24;
 
-            gridCSmall.Rows[0].Cells[2].Value = 10;
+            gridCSmall.Rows[0].Cells[2].Value = 12;
             gridCSmall.Rows[1].Cells[2].Value = 18;
-            gridCSmall.Rows[2].Cells[2].Value = 15;
+            gridCSmall.Rows[2].Cells[2].Value = 26;
+
+
+
+
+            //RowCount.Value = 3;
+            //ColumnCount.Value = 3;
+
+            //gridA.RowCount = 3;
+            //gridA.Rows[0].Cells[0].Value = 120;
+            //gridA.Rows[1].Cells[0].Value = 150;
+            //gridA.Rows[2].Cells[0].Value = 170;
+
+
+
+            //gridB.RowCount = 3;
+            //gridB.Rows[0].Cells[0].Value = 110;
+            //gridB.Rows[1].Cells[0].Value = 140;
+            //gridB.Rows[2].Cells[0].Value = 150;
+
+
+
+            //gridD.RowCount = 3;
+            //gridD.Rows[0].Cells[0].Value = 200;
+            //gridD.Rows[1].Cells[0].Value = 250;
+            //gridD.Rows[2].Cells[0].Value = 150;
+
+
+            //gridCBig.RowCount = 3;
+            //gridCBig.ColumnCount = 3;
+            //gridCBig.Rows[0].Cells[0].Value = 7;
+            //gridCBig.Rows[1].Cells[0].Value = 4;
+            //gridCBig.Rows[2].Cells[0].Value = 8;
+
+
+            //gridCBig.Rows[0].Cells[1].Value = 8;
+            //gridCBig.Rows[1].Cells[1].Value = 9;
+            //gridCBig.Rows[2].Cells[1].Value = 3;
+
+            //gridCBig.Rows[0].Cells[2].Value = 6;
+            //gridCBig.Rows[1].Cells[2].Value = 5;
+            //gridCBig.Rows[2].Cells[2].Value = 6;
+
+
+
+            //gridCSmall.RowCount = 3;
+            //gridCSmall.ColumnCount = 3;
+            //gridCSmall.Rows[0].Cells[0].Value = 14;
+            //gridCSmall.Rows[1].Cells[0].Value = 17;
+            //gridCSmall.Rows[2].Cells[0].Value = 12;
+
+
+            //gridCSmall.Rows[0].Cells[1].Value = 16;
+            //gridCSmall.Rows[1].Cells[1].Value = 11;
+            //gridCSmall.Rows[2].Cells[1].Value = 13;
+
+            //gridCSmall.Rows[0].Cells[2].Value = 10;
+            //gridCSmall.Rows[1].Cells[2].Value = 18;
+            //gridCSmall.Rows[2].Cells[2].Value = 15;
 
 
 
@@ -143,26 +143,6 @@ namespace TranZadTwoIA
 
         }
 
-        class Person
-        {
-            private int age;
-
-            public int Age
-            {
-                set
-                {
-                    if (value < 18)
-                    {
-                        Console.WriteLine("Возраст должен быть больше 17");
-                    }
-                    else
-                    {
-                        age = value;
-                    }
-                }
-                get { return age; }
-            }
-        }
 
         public struct Element
         {
@@ -232,8 +212,8 @@ namespace TranZadTwoIA
                 gridCBig.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
                 gridCBig.Columns[m - 1].HeaderText = "D" + m.ToString();
 
-                gridD.RowCount = n;
-                gridD.Rows[n - 1].HeaderCell.Value = "D" + n.ToString();
+                gridD.RowCount = m;
+                gridD.Rows[m - 1].HeaderCell.Value = "D" + m.ToString();
 
 
 
@@ -385,11 +365,10 @@ namespace TranZadTwoIA
             for (int i = 0; i < n; i++)
             {
                 aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
-                aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
             }
             for (int i = 0; i < m; i++)
             {
-
+                aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
             }
 
 
@@ -774,12 +753,12 @@ namespace TranZadTwoIA
             for (i = 0; i < n; i++)
             {
                 aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
+
+            }
+            for (i = 0; i < m; i++)
+            {
                 aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
             }
-            //for (i = 0; i < n; i++)
-            //{
-
-            //}
 
 
             for (i = 0; i < m; i++)

@@ -1,113 +1,5 @@
-D:\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe.config
-D:\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe
-D:\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.pdb
-D:\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-D:\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.Form1.resources
-D:\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-D:\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-D:\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.exe
-D:\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Андрей\Desktop\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Igor\Desktop\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Igor\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Igor\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Igor\Desktop\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Igor\Desktop\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Igor\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Igor\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.Form1.resources
-C:\Users\Igor\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Igor\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.Form1.resources
-C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Андрей\Desktop\тз\TranZadIA\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Igor\Desktop\15 февраля! тз\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Igor\Desktop\15 февраля! тз\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Igor\Desktop\15 февраля! тз\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Igor\Desktop\15 февраля! тз\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Igor\Desktop\15 февраля! тз\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Igor\Desktop\15 февраля! тз\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Igor\Desktop\15 февраля! тз\TranZadIA\obj\Debug\TranZadIA.Form1.resources
-C:\Users\Igor\Desktop\15 февраля! тз\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Igor\Desktop\15 февраля! тз\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Igor\Desktop\2 метода, март, по красоте\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Igor\Desktop\2 метода, март, по красоте\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Igor\Desktop\2 метода, март, по красоте\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\Диплом\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Андрей\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\Диплом\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\Диплом\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.Form1.resources
-C:\Users\Андрей\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Андрей\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Igor\Desktop\Диплом\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Igor\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Igor\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Igor\Desktop\Диплом\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Igor\Desktop\Диплом\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Igor\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Igor\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.Form1.resources
-C:\Users\Igor\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Igor\Desktop\Диплом\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Igor\Desktop\Диплом май\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Igor\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Igor\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Igor\Desktop\Диплом май\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Igor\Desktop\Диплом май\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Igor\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Igor\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.Form1.resources
-C:\Users\Igor\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Igor\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Андрей\Desktop\Диплом май\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Андрей\Desktop\Диплом май\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\Диплом май\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.Form1.resources
-C:\Users\Андрей\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Андрей\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Андрей\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\Диплом май\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\Диплом перед сдачей 1.07.17 (0;14 Ночи)\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Андрей\Desktop\Диплом перед сдачей 1.07.17 (0;14 Ночи)\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\Диплом перед сдачей 1.07.17 (0;14 Ночи)\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\Диплом перед сдачей 1.07.17 (0;14 Ночи)\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\Desktop\Диплом перед сдачей 1.07.17 (0;14 Ночи)\TranZadIA\obj\Debug\TranZadIA.Form1.resources
-C:\Users\Андрей\Desktop\Диплом перед сдачей 1.07.17 (0;14 Ночи)\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Андрей\Desktop\Диплом перед сдачей 1.07.17 (0;14 Ночи)\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Андрей\Desktop\Диплом перед сдачей 1.07.17 (0;14 Ночи)\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\Диплом перед сдачей 1.07.17 (0;14 Ночи)\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\bin\Debug\TranZadIA.exe.config
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\bin\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.TrainingForm.resources
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.exe
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.pdb
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadIA.TranZad.resources
-C:\Users\Андрей\Desktop\Диплом (TranZadIA 01.07.17)\TranZadIA\obj\Debug\TranZadTwoIA.TranZadTwo.resources
-C:\Users\Андрей\Desktop\tranzadia\TranZadIA\obj\Debug\TranZadTwoIA.TranZadTwo.resources
-C:\Users\Андрей\Desktop\tranzadia\TranZadIA\obj\Debug\TranZadIA.TranZad.resources
-C:\Users\Андрей\Desktop\tranzadia\TranZadIA\obj\Debug\TranZadIA.TrainingForm.resources
 C:\development\tranzadia\TranZadIA\bin\Debug\TranZadIA.exe.config
 C:\development\tranzadia\TranZadIA\bin\Debug\TranZadIA.exe
-C:\development\tranzadia\TranZadIA\bin\Debug\TranZadIA.pdb
-C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
 C:\development\tranzadia\TranZadIA\obj\Debug\TranZadTwoIA.TranZadTwo.resources
 C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.TranZad.resources
 C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.Properties.Resources.resources
@@ -115,3 +7,5 @@ C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.TrainingForm.resources
 C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.csproj.GenerateResource.Cache
 C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.exe
 C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.pdb
+C:\development\tranzadia\TranZadIA\bin\Debug\TranZadIA.pdb
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache

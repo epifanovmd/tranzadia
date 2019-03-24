@@ -17,8 +17,8 @@ namespace TranZadIA
         {
             InitializeComponent();
 
-            NextBtn.Visible = false;
-            ViewDeltaBtn.Visible = false;
+            checkValue.Visible = false;
+            checkDeltaZ.Visible = false;
             txBZ.Visible = false;
             lblSum.Visible = false;
 
@@ -133,7 +133,7 @@ namespace TranZadIA
             }
         }
         public static int countTable = 0;
-        private void button1_Click_1(object sender, EventArgs e)
+        private void checkValue_Click(object sender, EventArgs e)
         {
             U = (int[])Usave[countTable];
             V = (int[])Vsave[countTable];
@@ -145,8 +145,8 @@ namespace TranZadIA
                 {
                     try
                     {
-                        if (lblQ[i, j].Text != ((C[i, j].Q == null) ? "" : C[i, j].Q) || (
-                             (gridSupport.Rows[i].Cells[j].Value.ToString() == "--") ? 0 != C[i, j].Value : gridSupport.Rows[i].Cells[j].Value.ToString() != C[i, j].Value.ToString()))
+                        if (
+                             (gridSupport.Rows[i].Cells[j].Value.ToString() == "--") ? 0 != C[i, j].Value : gridSupport.Rows[i].Cells[j].Value.ToString() != C[i, j].Value.ToString())
                         {
                             gridSupport.Rows[i].Cells[j].Style.BackColor = Color.Yellow;
                             lblOptPlan.Visible = false;
@@ -167,6 +167,35 @@ namespace TranZadIA
                     }
                 }
             }
+
+            //for (int i = 0; i < n; i++)
+            //{
+            //    for (int j = 0; j < m; j++)
+            //    {
+            //        try
+            //        {
+            //            if (lblQ[i, j].Text != ((C[i, j].Q == null) ? "" : C[i, j].Q) || (
+            //                 (gridSupport.Rows[i].Cells[j].Value.ToString() == "--") ? 0 != C[i, j].Value : gridSupport.Rows[i].Cells[j].Value.ToString() != C[i, j].Value.ToString()))
+            //            {
+            //                gridSupport.Rows[i].Cells[j].Style.BackColor = Color.Yellow;
+            //                lblOptPlan.Visible = false;
+            //                lblQ[i, j].BackColor = Color.Yellow;
+            //                //MessageBox.Show("Неправильный ввод!");
+            //            }
+            //            else
+            //            {
+            //                gridSupport.Rows[i].Cells[j].Style.BackColor = Color.White;
+            //                lblQ[i, j].BackColor = Color.White;
+            //            }
+            //        }
+            //        catch (Exception)
+            //        {
+            //            gridSupport.Rows[i].Cells[j].Style.BackColor = Color.Yellow;
+            //            lblOptPlan.Visible = false;
+            //            //MessageBox.Show("Не все клетки заполнены");
+            //        }
+            //    }
+            //}
             for (int i = 0; i < n; i++)
             {
                 if (Convert.ToInt32(gridSupport.Rows[i].Cells[m].Value) != U[i])
@@ -232,14 +261,14 @@ namespace TranZadIA
                     }
                 }
             }
-            NextBtn.Visible = false;
-            ViewDeltaBtn.Visible = true;
+            checkValue.Visible = false;
+            checkDeltaZ.Visible = true;
             txBZ.Visible = true;
             lblSum.Visible = true;
             lblSum.Text = "Z =";
             txBZ.Text = "";
         }
-        private void ViewDeltaBtn_Click(object sender, EventArgs e)
+        private void checkDeltaZ_Click(object sender, EventArgs e)
         {
             int kN = 0;
             for (int i = 0; i < n; i++)
@@ -300,24 +329,69 @@ namespace TranZadIA
             {
                 txBZ.BackColor = Color.White;
             }
-            if (countTable + 1 != Csave.Length)
+            checkQ.Visible = true;
+            checkDeltaZ.Visible = false;
+        }
+
+        private void checkQ_Click(object sender, EventArgs e)
+        {
+            bool checkError = false;
+
+            for (int i = 0; i < n; i++)
             {
-                countTable++;
-                PrintPlanTable(countTable + 1);
-                gridDelta.RowCount = 0;
-                NextBtn.Visible = true;
-                ViewDeltaBtn.Visible = false;
-                txBZ.Visible = false;
-                lblSum.Visible = false;
+                for (int j = 0; j < m; j++)
+                {
+                    try
+                    {
+                        if (lblQ[i, j].Text != ((C[i, j].Q == null) ? "" : C[i, j].Q))
+                        {
+                            gridSupport.Rows[i].Cells[j].Style.BackColor = Color.Yellow;
+                            lblOptPlan.Visible = false;
+                            lblQ[i, j].BackColor = Color.Yellow;
+                            //MessageBox.Show("Неправильный ввод!");
+                            checkError = true;
+                        }
+                        else
+                        {
+                            gridSupport.Rows[i].Cells[j].Style.BackColor = Color.White;
+                            lblQ[i, j].BackColor = Color.White;
+                        }
+                       
+                    }
+                    catch (Exception)
+                    {
+                        gridSupport.Rows[i].Cells[j].Style.BackColor = Color.Yellow;
+                        lblOptPlan.Visible = false;
+                        checkError = true;
+                        //MessageBox.Show("Не все клетки заполнены");
+                    }
+                }
             }
-            else
+
+            if (checkError == false)
             {
-                lblSum.Text = "Z = " + Z.ToString();
-                lblOptPlan.Visible = true;
-                NextBtn.Visible = false;
-                ViewDeltaBtn.Visible = false;
-                txBZ.Visible = false;
-                lblSum.Visible = true;
+                if (countTable + 1 != Csave.Length)
+                {
+                    countTable++;
+                    PrintPlanTable(countTable + 1);
+                    gridDelta.RowCount = 0;
+                    checkValue.Visible = true;
+                    checkQ.Visible = false;
+                    checkDeltaZ.Visible = false;
+                    txBZ.Visible = false;
+                    lblSum.Visible = false;
+                }
+                else
+                {
+
+                    lblOptPlan.Visible = true;
+                    checkValue.Visible = false;
+                    checkDeltaZ.Visible = false;
+                    checkQ.Visible = false;
+                    txBZ.Visible = false;
+                    lblSum.Visible = true;
+                }
+
             }
         }
         private void solveTZ()
@@ -1102,8 +1176,8 @@ namespace TranZadIA
         }
         private void btnSolve_Click(object sender, EventArgs e)
         {
-            NextBtn.Visible = true;
-            ViewDeltaBtn.Visible = false;
+            checkValue.Visible = true;
+            checkDeltaZ.Visible = false;
             txBZ.Visible = false;
             lblSum.Visible = false;
             lblSum.Text = "Z =";
