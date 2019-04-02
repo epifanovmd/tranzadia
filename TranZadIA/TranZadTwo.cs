@@ -26,6 +26,7 @@ namespace TranZadTwoIA
 
             RowCount.Value = 3;
             ColumnCount.Value = 3;
+            StoreCount.Value = 3;
 
             gridA.RowCount = 3;
             gridA.Rows[0].Cells[0].Value = 247;
@@ -84,6 +85,7 @@ namespace TranZadTwoIA
 
             //RowCount.Value = 3;
             //ColumnCount.Value = 3;
+            //StoreCount.Value = 3;
 
             //gridA.RowCount = 3;
             //gridA.Rows[0].Cells[0].Value = 120;
@@ -185,6 +187,7 @@ namespace TranZadTwoIA
         public int PivotM;
         public static int n;
         public static int m;
+        public static int d;
         Element[,] C;
         int[] U = new int[n];
         int[] V = new int[m];
@@ -199,8 +202,9 @@ namespace TranZadTwoIA
                 aSupply = new int[n];
                 m = Convert.ToInt32(ColumnCount.Value);
                 aDemand = new int[m];
-                aStore = new int[m];
-                C = new Element[n + m, m + m];
+                d = Convert.ToInt32(StoreCount.Value);
+                aStore = new int[d];
+                C = new Element[n + d, m + d];
                 gridA.RowCount = n;
                 gridA.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
 
@@ -208,18 +212,18 @@ namespace TranZadTwoIA
                 gridB.Rows[m - 1].HeaderCell.Value = "B" + m.ToString();
 
                 gridCBig.RowCount = n;
-                gridCBig.ColumnCount = m;
+                gridCBig.ColumnCount = d;
                 gridCBig.Rows[n - 1].HeaderCell.Value = "A" + n.ToString();
-                gridCBig.Columns[m - 1].HeaderText = "D" + m.ToString();
+                gridCBig.Columns[d - 1].HeaderText = "D" + d.ToString();
 
-                gridD.RowCount = m;
-                gridD.Rows[m - 1].HeaderCell.Value = "D" + m.ToString();
+                gridD.RowCount = d;
+                gridD.Rows[d - 1].HeaderCell.Value = "D" + m.ToString();
 
 
 
-                gridCSmall.RowCount = m;
+                gridCSmall.RowCount = d;
                 gridCSmall.ColumnCount = m;
-                gridCSmall.Rows[m - 1].HeaderCell.Value = "D" + m.ToString();
+                gridCSmall.Rows[d - 1].HeaderCell.Value = "D" + d.ToString();
                 gridCSmall.Columns[m - 1].HeaderText = "B" + m.ToString();
 
 
@@ -235,6 +239,10 @@ namespace TranZadTwoIA
                 if (sender == ColumnCount)
                 {
                     ColumnCount.Value = 1;
+                }
+                if (sender == StoreCount)
+                {
+                    StoreCount.Value = 1;
                 }
             }
         }
@@ -282,9 +290,9 @@ namespace TranZadTwoIA
         private void PrintQmin()
         {
             int nMin = nVeryLargeNumber;
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < m + d; j++)
                 {
                     if (C[i, j].Q == "-Q")
                     {
@@ -335,22 +343,22 @@ namespace TranZadTwoIA
         {
             //считаем и выводим сумму
             int Z = 0;
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < m + d; j++)
                 {
                     if (C[i, j].Value == -1)
-                        Z += C[i, j].Index1 * (C[i, j].Value + 1);
+                        Z += (i >= n || j >= d) ? C[i, j].Index2 * (C[i, j].Value + 1) : C[i, j].Index1 * (C[i, j].Value + 1);
                     else
-                        Z += C[i, j].Index1 * C[i, j].Value;
+                        Z += (i >= n || j >= d) ? C[i, j].Index2 * C[i, j].Value : C[i, j].Index1 * C[i, j].Value;
                 }
             }
             lblSum.Text = "Сумма Z = " + Z.ToString();
         }
         private void PrintPlan()
         {
-            gridSupport.RowCount = n + m;
-            gridSupport.ColumnCount = m + m;
+            gridSupport.RowCount = n + d;
+            gridSupport.ColumnCount = m + d;
             gridSupport.RowHeadersWidth = 80;
 
             gridSupport.TopLeftHeaderCell.Value = "X" + numTable.ToString();
@@ -366,7 +374,7 @@ namespace TranZadTwoIA
             {
                 aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
             }
-            for (int i = 0; i < m; i++)
+            for (int i = 0; i < d; i++)
             {
                 aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
             }
@@ -383,24 +391,24 @@ namespace TranZadTwoIA
             {
                 gridSupport.Rows[i].HeaderCell.Value = aSupply[i].ToString();
             }
-            for (int j = m; j < m + m; j++)
+            for (int j = d; j < d + m; j++)
             {
-                gridSupport.Columns[j].HeaderText = "      " + aDemand[j - m].ToString();
+                gridSupport.Columns[j].HeaderText = "      " + aDemand[j - d].ToString();
             }
-            for (int i = n; i < n + m; i++)
+            for (int i = n; i < n + d; i++)
             {
                 gridSupport.Rows[i].HeaderCell.Value = aStore[i - n].ToString();
             }
-            for (int j = 0; j < m; j++)
+            for (int j = 0; j < d; j++)
             {
                 gridSupport.Columns[j].HeaderText = "      " + aStore[j].ToString();
             }
 
 
-
+            //верхняя правая таблица
             for (int i = 0; i < n; i++)
             {
-                for (int j = m; j < m + m; j++)
+                for (int j = d; j < d + m; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -437,7 +445,7 @@ namespace TranZadTwoIA
             }
 
 
-
+            //левая верхняя таблица
             for (int i = 0; i < n; i++)
             {
                 for (int j = 0; j < m; j++)
@@ -475,10 +483,10 @@ namespace TranZadTwoIA
                     }
                 }
             }
-
-            for (int i = n; i < n + m; i++)
+            //нижняя правая таблица
+            for (int i = n; i < n + d; i++)
             {
-                for (int j = m; j < m + m; j++)
+                for (int j = d; j < d + m; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -513,9 +521,10 @@ namespace TranZadTwoIA
                     }
                 }
             }
-            for (int i = n; i < n + m; i++)
+            //левая нижняя таблица
+            for (int i = n; i < n + d; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < d; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -561,28 +570,27 @@ namespace TranZadTwoIA
             GetUVDelta();
             gridDelta.Visible = true;
             //инициализируем таблицу U, V
-            gridSupport.RowCount = n + m + 1;
-            gridSupport.ColumnCount = m + m + 1;
-            gridSupport.Rows[n + m].HeaderCell.Value = "Vj";
-            gridSupport.Columns[m + m].HeaderText = "Ui";
-            gridSupport.Rows[0].Cells[m + m].Value = "Ui = " + 0.ToString();
+            gridSupport.RowCount = n + d + 1;
+            gridSupport.ColumnCount = d + m + 1;
+            gridSupport.Rows[n + d].HeaderCell.Value = "Vj";
+            gridSupport.Columns[d + m].HeaderText = "Ui";
+            gridSupport.Rows[0].Cells[d + m].Value = "Ui = " + 0.ToString();
 
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                gridSupport.Rows[i].Cells[m + m].Value = "\nU" + (i + 1) + " = " + U[i];
+                gridSupport.Rows[i].Cells[d + m].Value = "\nU" + (i + 1) + " = " + U[i];
             }
-            for (int j = 0; j < m + m; j++)
+            for (int j = 0; j < d + m; j++)
             {
-
-                gridSupport.Rows[n + m].Cells[j].Value = "\nV" + (j + 1) + " = " + V[j];
+                gridSupport.Rows[n + d].Cells[j].Value = "\nV" + (j + 1) + " = " + V[j];
             }
-            gridSupport.Rows[n + m].Cells[m + m].Value = "";
+            gridSupport.Rows[n + d].Cells[d + m].Value = "";
 
             //считаем колличество пустых клеток
             int k = 0;
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < d + m; j++)
                 {
                     if (C[i, j].Value == 0 || C[i, j].Value == -1)
                     {
@@ -597,9 +605,9 @@ namespace TranZadTwoIA
             gridDelta.RowHeadersWidth = 85;
             k = 0;
             int deltaMax = 0;
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < d + m; j++)
                 {
                     if (C[i, j].Value == 0 || C[i, j].Value == -1)
                     {
@@ -620,16 +628,16 @@ namespace TranZadTwoIA
         private void GetUVDelta()
         {
             //обнуляем массивы U и V 
-            U = new int[n + m];
-            V = new int[m + m];
+            U = new int[n + d];
+            V = new int[d + m];
 
             //доп массивы для проверки пустых U и V
-            bool[] Uf = new bool[n + m];
-            bool[] Vf = new bool[m + m];
+            bool[] Uf = new bool[n + d];
+            bool[] Vf = new bool[d + m];
             Uf[0] = true;
 
             //сносим с первой строчки индексы в V 
-            for (int i = 0; i < m + m; i++)
+            for (int i = 0; i < d + m; i++)
             {
                 if (C[0, i].Value != 0 && C[0, i].Value != -1 && C[0, i].Value != -11)
                 {
@@ -637,7 +645,6 @@ namespace TranZadTwoIA
                     V[i] = (i >= n) ? C[0, i].Index2 : C[0, i].Index1;
                 }
             }
-
             //считаем U и V 
             bool flag = true;
             int uuu = 0;
@@ -645,35 +652,35 @@ namespace TranZadTwoIA
             while (flag)
             {
                 flag = false;
-                for (int i = 1; i < n + m; i++)
+                for (int i = 1; i < n + d; i++)
                 {
-                    for (int j = 0; j < m + m; j++)
+                    for (int j = 0; j < d + m; j++)
                     {
                         if (C[i, j].Value != 0 && C[i, j].Value != -1 && C[i, j].Value != -11)
                         {
                             if (Vf[j] != false)
                             {
-                                uuu = Convert.ToInt32((i >= n || j >= m) ? C[i, j].Index2 - V[j] : C[i, j].Index1 - V[j]);
+                                uuu = Convert.ToInt32((i >= n || j >= d) ? C[i, j].Index2 - V[j] : C[i, j].Index1 - V[j]);
                                 U[i] = uuu;
                                 Uf[i] = true;
                             }
                             else if (Uf[i] != false)
                             {
-                                vvv = Convert.ToInt32((i >= n || j >= m) ? C[i, j].Index2 - U[i] : C[i, j].Index1 - U[i]);
+                                vvv = Convert.ToInt32((i >= n || j >= d) ? C[i, j].Index2 - U[i] : C[i, j].Index1 - U[i]);
                                 V[j] = vvv;
                                 Vf[j] = true;
                             }
                         }
                     }
                 }
-                for (int i = 1; i < n + m; i++)
+                for (int i = 1; i < n + d; i++)
                 {
                     if (Uf[i] == false)
                     {
                         flag = true;
                     }
                 }
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < d + m; j++)
                 {
                     if (Vf[j] == false)
                     {
@@ -681,14 +688,14 @@ namespace TranZadTwoIA
                     }
                 }
             }
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < d + m; j++)
                 {
                     C[i, j].Delta = 0;
-                    if (C[i, j].Value == 0)
+                    if (C[i, j].Value == 0 || C[i, j].Value == -1)
                     {
-                        C[i, j].Delta = ((i >= n || j >= m) ? U[i] + V[j] - C[i, j].Index2 : U[i] + V[j] - C[i, j].Index1);
+                        C[i, j].Delta = ((i >= n || j >= d) ? U[i] + V[j] - C[i, j].Index2 : U[i] + V[j] - C[i, j].Index1);
                     }
                 }
             }
@@ -702,9 +709,9 @@ namespace TranZadTwoIA
         }
         private bool LookHorizontaly(ref ArrayList aPath, int u, int v, int u1, int v1)
         {
-            for (int i = 0; i < m + m; i++)
+            for (int i = 0; i < d + m; i++)
             {
-                if (i != v && C[u, i].Value != 0 && C[u, i].Value != -11)
+                if (i != v && C[u, i].Value != 0 && C[u, i].Value != -1 && C[u, i].Value != -11)
                 {
                     if (i == v1)
                     {
@@ -722,9 +729,9 @@ namespace TranZadTwoIA
         }
         private bool LookVerticaly(ref ArrayList aPath, int u, int v, int u1, int v1)
         {
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                if (i != u && C[i, v].Value != 0 && C[i, v].Value != -11)
+                if (i != u && C[i, v].Value != 0 && C[i, v].Value != -1 && C[i, v].Value != -11)
                 {
                     if (LookHorizontaly(ref aPath, i, v, u1, v1))
                     {
@@ -738,11 +745,11 @@ namespace TranZadTwoIA
 
         private void MetodMinElement()
         {
-            int[] indexNullI = new int[(n + m) * (m + m)];
-            int[] indexNullJ = new int[(n + m) * (m + m)];
+            int[] indexNullI = new int[(n + d) * (d + m)];
+            int[] indexNullJ = new int[(n + d) * (d + m)];
             gridDelta.RowCount = 0;
-            C = new Element[n + m, m + m];
-            El[] CC = new El[n * m];
+            C = new Element[n + d, d + m];
+            El[] CC = new El[n * d];
             PivotN = -1;
             PivotM = -1;
             int i = 0;
@@ -755,7 +762,7 @@ namespace TranZadTwoIA
                 aSupply[i] = Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
 
             }
-            for (i = 0; i < m; i++)
+            for (i = 0; i < d; i++)
             {
                 aStore[i] = Convert.ToInt32(gridD.Rows[i].Cells[0].Value);
             }
@@ -779,25 +786,25 @@ namespace TranZadTwoIA
             // индексы верхней левой таблицы
             for (i = 0; i < n; i++)
             {
-                for (j = 0; j < m; j++)
+                for (j = 0; j < d; j++)
                 {
                     C[i, j].Index1 = Convert.ToInt32(gridCBig.Rows[i].Cells[j].Value);
                 }
             }
 
             // индексы нижней правой таблицы
-            for (i = n; i < n + m; i++)
+            for (i = n; i < n + d; i++)
             {
-                for (j = m; j < m + m; j++)
+                for (j = d; j < d + m; j++)
                 {
-                    C[i, j].Index2 = Convert.ToInt32(gridCSmall.Rows[i - n].Cells[j - m].Value);
+                    C[i, j].Index2 = Convert.ToInt32(gridCSmall.Rows[i - n].Cells[j - d].Value);
                 }
             }
 
             bool tmp = false;
             for (i = 0; i < n; i++)
             {
-                for (j = 0; j < m; j++)
+                for (j = 0; j < d; j++)
                 {
                     if (C[i, j].Index1 == 0)
                     {
@@ -810,16 +817,16 @@ namespace TranZadTwoIA
             // M-ки правой верхней таблицы
             for (i = 0; i < ((tmp == true) ? n - 1 : n); i++)
             {
-                for (j = m; j < m + m; j++)
+                for (j = d; j < d + m; j++)
                 {
                     C[i, j].Value = -11;
                 }
             }
 
             // M-ки левой нижней таблицы
-            for (i = n; i < n + m; i++)
+            for (i = n; i < n + d; i++)
             {
-                for (j = 0; j < m; j++)
+                for (j = 0; j < d; j++)
                 {
                     if ((i - n) != j)
                         C[i, j].Value = -11;
@@ -831,7 +838,7 @@ namespace TranZadTwoIA
             int l = 0;
             for (i = 0; i < n; i++)
             {
-                for (j = 0; j < m; j++)
+                for (j = 0; j < d; j++)
                 {
                     CC[l].Index = C[i, j].Index1;
                     CC[l].IndexI = i;
@@ -849,7 +856,7 @@ namespace TranZadTwoIA
 
             l = 0;
             int minEl = 0;
-            while (l < n * m)
+            while (l < n * d)
             {
 
                 if (CC[l].Index != 0)
@@ -874,7 +881,7 @@ namespace TranZadTwoIA
             }
 
             l = 0;
-            while (l < n * m)
+            while (l < n * d)
             {
                 if (CC[l].Index == 0)
                 {
@@ -892,7 +899,7 @@ namespace TranZadTwoIA
             int s = 0;
             for (i = 0; i < n; i++)
             {
-                for (j = 0; j < m; j++)
+                for (j = 0; j < d; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -903,13 +910,13 @@ namespace TranZadTwoIA
 
 
             indNull = 0;
-            while (s < n + m - 1)
+            while (s < n + d - 1)
             {
                 int minInd = int.MaxValue;
                 int indI = 0;
                 int indJ = 0;
 
-                if (indexNullJ[indNull] + 1 <= m)
+                if (indexNullJ[indNull] + 1 <= d)
                 {
                     if (C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1 < minInd)
                     {
@@ -956,7 +963,7 @@ namespace TranZadTwoIA
             int value = 0;
 
 
-            for (i = 0; i < m; i++)
+            for (i = 0; i < d; i++)
             {
                 if (aaStore[i] != 0)
                 {
@@ -972,7 +979,7 @@ namespace TranZadTwoIA
             aaDemand = (int[])aDemand.Clone();
             aaStore = (int[])aStore.Clone();
 
-            for (i = 0; i < m; i++)
+            for (i = 0; i < d; i++)
             {
                 if (i == ind)
                 {
@@ -1010,9 +1017,9 @@ namespace TranZadTwoIA
             aaStore = (int[])aStore.Clone();
 
 
-            for (i = n; i < n + m; i++)
+            for (i = n; i < n + d; i++)
             {
-                for (j = 0; j < m; j++)
+                for (j = 0; j < d; j++)
                 {
                     if (i - n == j)
                     {
@@ -1023,12 +1030,12 @@ namespace TranZadTwoIA
             }
 
 
-            CC = new El[m * m];
+            CC = new El[d * m];
             //сохраняем тарифы и их индексы 
             l = 0;
-            for (i = n; i < n + m; i++)
+            for (i = n; i < n + d; i++)
             {
-                for (j = m; j < m + m; j++)
+                for (j = d; j < d + m; j++)
                 {
                     CC[l].Index = C[i, j].Index2;
                     CC[l].IndexI = i;
@@ -1046,7 +1053,7 @@ namespace TranZadTwoIA
 
             l = 0;
             minEl = 0;
-            while (l < m * m)
+            while (l < d * m)
             {
 
                 if (CC[l].Index != 0)
@@ -1071,7 +1078,7 @@ namespace TranZadTwoIA
             }
 
             l = 0;
-            while (l < m * m)
+            while (l < d * m)
             {
                 if (CC[l].Index == 0)
                 {
@@ -1087,9 +1094,9 @@ namespace TranZadTwoIA
 
 
             s = 0;
-            for (i = n; i < n + m; i++)
+            for (i = n; i < n + d; i++)
             {
-                for (j = m; j < m + m; j++)
+                for (j = d; j < d + m; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -1177,9 +1184,9 @@ namespace TranZadTwoIA
             int x;
             GetUVDelta();
 
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < d + m; j++)
                 {
                     x = C[i, j].Delta;
                     if (x > nMax)
@@ -1250,9 +1257,9 @@ namespace TranZadTwoIA
         private void CountBaseCell()
         {   // кол-во базисных клеток
             int s = 0;
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < d + m; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -1260,11 +1267,11 @@ namespace TranZadTwoIA
                     }
                 }
             }
-            while (s < n + m + m + m - 1)
+            while (s < n + d + d + m - 1)
             {
-                for (int i = n + m - 1; i >= 0; i--)
+                for (int i = n + d - 1; i >= 0; i--)
                 {
-                    for (int j = m + m - 1; j >= 0; j--)
+                    for (int j = d + m - 1; j >= 0; j--)
                     {
                         if (C[i, j].Q == "-Q")
                         {
@@ -1281,9 +1288,9 @@ namespace TranZadTwoIA
         }
         private void ClearQ()
         {
-            for (int i = 0; i < n + m; i++)
+            for (int i = 0; i < n + d; i++)
             {
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < d + m; j++)
                 {
                     C[i, j].Q = "";
                 }
@@ -1296,19 +1303,17 @@ namespace TranZadTwoIA
             aPath = FindPath(PivotN, PivotM);
             for (int w = 1; w < aPath.Count; w += 2)
             {
-                gridSupport.Rows[(aPath[w] as int[])[0]].Cells[(aPath[w] as int[])[1]].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 gridSupport.Rows[(aPath[w] as int[])[0]].Cells[(aPath[w] as int[])[1]].Style.ForeColor = Color.Red;
                 C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Q = "-Q";
-                gridSupport.Rows[(aPath[w - 1] as int[])[0]].Cells[(aPath[w - 1] as int[])[1]].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
                 gridSupport.Rows[(aPath[w - 1] as int[])[0]].Cells[(aPath[w - 1] as int[])[1]].Style.ForeColor = Color.Red;
                 C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Q = "+Q";
 
             }
-            gridSupport.RowCount = n + m;
-            gridSupport.ColumnCount = m + m;
-            for (int i = 0; i < n + m; i++)
+            gridSupport.RowCount = n + d;
+            gridSupport.ColumnCount = d + m;
+            for (int i = 0; i < n + d; i++)
             {
-                for (int j = 0; j < m + m; j++)
+                for (int j = 0; j < d + m; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -1369,9 +1374,9 @@ namespace TranZadTwoIA
                         ColumnCount.Value++;
                         gridB.Rows[Convert.ToInt32(ColumnCount.Value) - 1].Cells[0].Value = sumA - sumB;
 
-                        for (int i = 0; i < n; i++)
+                        for (int i = 0; i < d; i++)
                         {
-                            gridCBig.Rows[i].Cells[m - 1].Value = 0;
+                            gridCSmall.Rows[i].Cells[m - 1].Value = 0;
                         }
                         lblModelType.Text = "A = " + sumA + "; B = " + sumB + ";    A > B - Открытая модель";
                     }
@@ -1380,7 +1385,7 @@ namespace TranZadTwoIA
                         RowCount.Value++;
                         gridA.Rows[Convert.ToInt32(RowCount.Value) - 1].Cells[0].Value = sumB - sumA;
 
-                        for (int i = 0; i < m; i++)
+                        for (int i = 0; i < d; i++)
                         {
                             gridCBig.Rows[n - 1].Cells[i].Value = 0;
                         }
@@ -1433,7 +1438,7 @@ namespace TranZadTwoIA
 
 
 
-            C = new Element[n + m, m + m];
+            C = new Element[n + d, d + m];
             UVDOutBtn.Enabled = true;
             NextPlanBtn.Enabled = false;
             UVDOutBtn.Visible = true;
@@ -1445,58 +1450,168 @@ namespace TranZadTwoIA
         }
         private void PrintSavePlan()
         {
-            gridSupport.RowCount = n;
-            gridSupport.ColumnCount = m;
+            gridSupport.RowCount = n + d;
+            gridSupport.ColumnCount = d + m;
+            //верхняя правая таблица
             for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = d; j < d + m; j++)
                 {
-                    gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Black;
-                    if (C[i, j].Q == "+Q" || C[i, j].Q == "-Q")
-                    {
-                        gridSupport.Rows[i].Cells[j].Style.ForeColor = Color.Red;
-                    }
                     if (C[i, j].Value != 0)
                     {
                         if (C[i, j].Value == -1)
                         {
-                            if (C[i, j].Q != "")
-                            {
-                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                            }
-                            else
-                            {
-                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                            }
-                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + (C[i, j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                            gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                            gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + (C[i, j].Value + 1).ToString();
                         }
                         else
                         {
-                            if (C[i, j].Q != "")
+                            if (C[i, j].Value == -11)
                             {
                                 gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                                gridSupport.Rows[i].Cells[j].Value = "M";
+
                             }
                             else
                             {
                                 gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                                gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + C[i, j].Value.ToString();
                             }
-                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + C[i, j].Value.ToString();
                         }
                     }
                     else
                     {
-                        if (C[i, j].Q != "")
-                        {
-                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                        }
-                        else
-                        {
-                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-                        }
-                        gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n " + "--";
+                        gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                        gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                        gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n " + "--";
                     }
                 }
             }
+
+
+            //левая верхняя таблица
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    if (C[i, j].Value != 0)
+                    {
+                        if (C[i, j].Value == -1)
+                        {
+                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                            gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                            gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + "--";
+                        }
+                        else
+                        {
+                            if (C[i, j].Value == -11)
+                            {
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                                gridSupport.Rows[i].Cells[j].Value = "M";
+
+                            }
+                            else
+                            {
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                                gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + C[i, j].Value.ToString();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                        gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                        gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n " + "--";
+                    }
+                }
+            }
+            //нижняя правая таблица
+            for (int i = n; i < n + d; i++)
+            {
+                for (int j = d; j < d + m; j++)
+                {
+                    if (C[i, j].Value != 0)
+                    {
+                        if (C[i, j].Value == -1)
+                        {
+                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                            gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                            gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index2 + "\n" + (C[i, j].Value + 1).ToString();
+                        }
+                        else
+                        {
+                            if (C[i, j].Value == -11)
+                            {
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                                gridSupport.Rows[i].Cells[j].Value = "M";
+
+                            }
+                            else
+                            {
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                                gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index2 + "\n" + C[i, j].Value.ToString();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                        gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                        gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index2 + "\n " + "--";
+                    }
+                }
+            }
+            //левая нижняя таблица
+            for (int i = n; i < n + d; i++)
+            {
+                for (int j = 0; j < d; j++)
+                {
+                    if (C[i, j].Value != 0)
+                    {
+                        if (C[i, j].Value == -1)
+                        {
+                            gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                            gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                            gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + (C[i, j].Value + 1).ToString();
+                        }
+                        else
+                        {
+                            if (C[i, j].Value == -11)
+                            {
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                                gridSupport.Rows[i].Cells[j].Value = "M";
+
+                            }
+                            else
+                            {
+                                gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                                gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                                gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n" + C[i, j].Value.ToString();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        gridSupport.Rows[i].Cells[j].Style.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+                        gridSupport.Rows[i].Cells[j].Style.ForeColor = (C[i, j].Q != "" && C[i, j].Q != null) ? Color.Red : Color.Black;
+                        gridSupport.Rows[i].Cells[j].Value = ((C[i, j].Q == "") || (C[i, j].Q == null) ? "          " : C[i, j].Q) + "          " + C[i, j].Index1 + "\n " + "--";
+                    }
+                }
+            }
+
+
+
+
+
+
         }
         private void backTable_Click(object sender, EventArgs e)
         {
