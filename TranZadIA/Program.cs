@@ -16,7 +16,7 @@ namespace TranZadIA
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new TranZad());
+            Application.Run(new FormSelection());
         }
     }
 }

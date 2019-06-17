@@ -18,9 +18,6 @@ namespace TranZadIA
         {
             InitializeComponent();
             RowColCount_ValueChanged(null,null);
-
-            Form tranzadtwo = new TranZadTwo();
-            tranzadtwo.ShowDialog();
         }
         public struct Element
         {

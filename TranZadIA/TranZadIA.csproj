@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FormSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSelection.Designer.cs">
+      <DependentUpon>FormSelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="TranZadTwo.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -69,6 +75,9 @@
     <Compile Include="TrainingForm.Designer.cs">
       <DependentUpon>TrainingForm.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FormSelection.resx">
+      <DependentUpon>FormSelection.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="TranZadTwo.resx">
       <DependentUpon>TranZadTwo.cs</DependentUpon>
     </EmbeddedResource>

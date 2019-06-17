@@ -9,3 +9,4 @@ C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.exe
 C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.pdb
 C:\development\tranzadia\TranZadIA\bin\Debug\TranZadIA.pdb
 C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.csprojResolveAssemblyReference.cache
+C:\development\tranzadia\TranZadIA\obj\Debug\TranZadIA.FormSelection.resources
