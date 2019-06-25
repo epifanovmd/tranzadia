@@ -110,39 +110,44 @@ namespace TranZadTwoIA
             gridCBig.RowCount = 3;
             gridCBig.ColumnCount = 3;
             gridCBig.Rows[0].Cells[0].Value = 7;
-            gridCBig.Rows[1].Cells[0].Value = 4;
-            gridCBig.Rows[2].Cells[0].Value = 8;
+            gridCBig.Rows[1].Cells[0].Value = 8;
+            gridCBig.Rows[2].Cells[0].Value = 6;
 
 
-            gridCBig.Rows[0].Cells[1].Value = 8;
+            gridCBig.Rows[0].Cells[1].Value = 4;
             gridCBig.Rows[1].Cells[1].Value = 9;
-            gridCBig.Rows[2].Cells[1].Value = 3;
+            gridCBig.Rows[2].Cells[1].Value = 5;
 
-            gridCBig.Rows[0].Cells[2].Value = 6;
-            gridCBig.Rows[1].Cells[2].Value = 5;
-            gridCBig.Rows[2].Cells[2].Value = 6;
+            gridCBig.Rows[0].Cells[2].Value = 8;
+            gridCBig.Rows[1].Cells[2].Value = 3;
+            gridCBig.Rows[2].Cells[2].Value = 3;
 
 
 
             gridCSmall.RowCount = 3;
             gridCSmall.ColumnCount = 3;
             gridCSmall.Rows[0].Cells[0].Value = 14;
-            gridCSmall.Rows[1].Cells[0].Value = 17;
-            gridCSmall.Rows[2].Cells[0].Value = 12;
+            gridCSmall.Rows[1].Cells[0].Value = 16;
+            gridCSmall.Rows[2].Cells[0].Value = 10;
 
 
-            gridCSmall.Rows[0].Cells[1].Value = 16;
+            gridCSmall.Rows[0].Cells[1].Value = 17;
             gridCSmall.Rows[1].Cells[1].Value = 11;
-            gridCSmall.Rows[2].Cells[1].Value = 13;
+            gridCSmall.Rows[2].Cells[1].Value = 18;
 
-            gridCSmall.Rows[0].Cells[2].Value = 10;
-            gridCSmall.Rows[1].Cells[2].Value = 18;
+            gridCSmall.Rows[0].Cells[2].Value = 12;
+            gridCSmall.Rows[1].Cells[2].Value = 13;
             gridCSmall.Rows[2].Cells[2].Value = 15;
 
 
 
 
 
+        }
+        public struct Index
+        {
+            public int I { get; set; }
+            public int J { get; set; }
         }
 
 
@@ -162,6 +167,13 @@ namespace TranZadTwoIA
                 else
                     return a;
             }
+        }
+
+        public struct IndexItem
+        {
+            public Element Item { get; set; }
+            public int I { get; set; }
+            public int J { get; set; }
         }
         struct El
         {
@@ -745,8 +757,8 @@ namespace TranZadTwoIA
 
         private void MetodMinElement()
         {
-            int[] indexNullI = new int[(n + d) * (d + m)];
-            int[] indexNullJ = new int[(n + d) * (d + m)];
+            List<Index> indexesFalseTable = new List<Index>();
+
             gridDelta.RowCount = 0;
             C = new Element[n + d, d + m];
             El[] CC = new El[n * d];
@@ -754,7 +766,6 @@ namespace TranZadTwoIA
             PivotM = -1;
             int i = 0;
             int j = 0;
-            int indNull = 0;
 
             //сохраняем значения 
             for (i = 0; i < n; i++)
@@ -881,9 +892,8 @@ namespace TranZadTwoIA
 
                     if ((aaSupply[CC[l].IndexI] - minEl == 0 && aaStore[CC[l].IndexJ] - minEl == 0) && (aaSupply[CC[l].IndexI] != 0 && aaStore[CC[l].IndexJ] != 0))
                     {
-                        indexNullI[indNull] = CC[l].IndexI;
-                        indexNullJ[indNull] = CC[l].IndexJ;
-                        indNull++;
+
+                        indexesFalseTable.Add(new Index { I = CC[l].IndexI, J = CC[l].IndexJ });
                     }
 
                     aaSupply[CC[l].IndexI] -= minEl;
@@ -922,55 +932,125 @@ namespace TranZadTwoIA
             }
 
 
-            //indNull = 0;
-            //while (s < n + d - 1)
-            //{
-            //    int minInd = int.MaxValue;
-            //    int indI = 0;
-            //    int indJ = 0;
+            //ложный ноль
 
-            //    if (indexNullJ[indNull] + 1 <= d)
-            //    {
-            //        if (C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1 < minInd)
-            //        {
-            //            minInd = C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1;
-            //            indI = indexNullI[indNull];
-            //            indJ = indexNullJ[indNull] + 1;
-            //        }
-            //    }
-            //    if (indexNullJ[indNull] - 1 >= 0)
-            //    {
-            //        if (C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1 < minInd)
-            //        {
-            //            minInd = C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1;
-            //            indI = indexNullI[indNull];
-            //            indJ = indexNullJ[indNull] - 1;
-            //        }
-            //    }
+            IndexItem[] arr = new IndexItem[] { };
+            IndexItem itemToRemove = new IndexItem { };
 
-            //    if (indexNullI[indNull] + 1 <= n)
-            //    {
-            //        if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
-            //        {
-            //            minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
-            //            indI = indexNullI[indNull] + 1;
-            //            indJ = indexNullJ[indNull];
-            //        }
-            //    }
-            //    if (indexNullI[indNull] - 1 >= 0)
-            //    {
-            //        if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
-            //        {
-            //            minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
-            //            indI = indexNullI[indNull] - 1;
-            //            indJ = indexNullJ[indNull];
-            //        }
-            //    }
-            //    C[indI, indJ].Value = -1;
-            //    s++;
-            //    indNull++;
-            //}
+            foreach (Index indexes in indexesFalseTable)
+            {
+                if (s < n + d - 1)
+                {
 
+                    if (indexes.I + 1 >= n)
+                    {
+                        if (indexes.J + 1 >= d)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+                        }
+                        else if (indexes.J - 1 <= 0)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+
+                        }
+                        else
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+                        }
+
+                    }
+
+                    if (indexes.I - 1 <= 0)
+                    {
+                        if (indexes.J + 1 >= d)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J }
+                            };
+                        }
+                        else if (indexes.J - 1 <= 0)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J }
+                            };
+
+                        }
+                        else
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J }
+                            };
+                        }
+
+                    }
+                    if (indexes.I - 1 >= 0 && indexes.I + 1 <= n)
+                    {
+
+                        if (indexes.J + 1 >= d)
+                        {
+                            arr = new IndexItem[] {
+                        new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                        new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J },
+                        new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                        };
+                        }
+                        else if (indexes.J - 1 <= 0)
+                        {
+                            arr = new IndexItem[] {
+                        new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                        new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J },
+                        new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                        };
+
+                        }
+                        else
+                        {
+                            arr = new IndexItem[] {
+                        new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                        new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                        new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J },
+                        new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                        };
+                        }
+                    }
+
+                    int indI = -1;
+                    int indJ = -1;
+
+                    int minInd = int.MaxValue;
+
+                    foreach (IndexItem item in arr)
+                    {
+                        if (item.Item.Index1 <= minInd && item.Item.Value == 0 && item.Item.Value != -1)
+                        {
+                            minInd = item.Item.Index1;
+                            indI = item.I;
+                            indJ = item.J;
+                        }
+                    }
+
+                    if (indI >= 0 && indJ >= 0)
+                    {
+                        C[indI, indJ].Value = -1;
+                    }
+                }
+                s++;
+
+            }
 
             int ind = 0;
             int value = 0;
@@ -1026,8 +1106,10 @@ namespace TranZadTwoIA
 
 
 
+            //правая нижняя таблица
             aaDemand = (int[])aDemand.Clone();
             aaStore = (int[])aStore.Clone();
+            indexesFalseTable = new List<Index>();
 
 
             for (i = n; i < n + d; i++)
@@ -1078,9 +1160,7 @@ namespace TranZadTwoIA
 
                     if ((aaStore[CC[l].IndexI - n] - minEl == 0 && aaDemand[CC[l].IndexJ - d] - minEl == 0) && (aaStore[CC[l].IndexI - n] != 0 && aaDemand[CC[l].IndexJ - d] != 0))
                     {
-                        indexNullI[indNull] = CC[l].IndexI;
-                        indexNullJ[indNull] = CC[l].IndexJ;
-                        indNull++;
+                        indexesFalseTable.Add(new Index { I = CC[l].IndexI, J = CC[l].IndexJ });
                     }
 
                     aaStore[CC[l].IndexI - n] -= minEl;
@@ -1119,72 +1199,127 @@ namespace TranZadTwoIA
             }
 
 
-            // ищем куда ставить ложный ноль
 
-            indNull = 0;
-            while (s < (n + d) + (d + m) - 1)
+            //ложный ноль
+
+            arr = new IndexItem[] { };
+            itemToRemove = new IndexItem { };
+
+            foreach (Index indexes in indexesFalseTable)
             {
-                int minInd = int.MaxValue;
-                int indI = 0;
-                int indJ = 0;
+                if (s < d + m - 1)
+                {
 
-                if (indexNullJ[indNull] + 1 <= (d + m))
-                {
-                    if (C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1 < minInd)
+                    if (indexes.I + 1 >= (n + d))
                     {
-                        minInd = C[indexNullI[indNull], indexNullJ[indNull] + 1].Index1;
-                        indI = indexNullI[indNull];
-                        indJ = indexNullJ[indNull] + 1;
-                    }
-                }
-                if (indexNullJ[indNull] - 1 >= 0)
-                {
-                    if (C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1 < minInd)
-                    {
-                        minInd = C[indexNullI[indNull], indexNullJ[indNull] - 1].Index1;
-                        indI = indexNullI[indNull];
-                        indJ = indexNullJ[indNull] - 1;
-                    }
-                }
+                        if (indexes.J + 1 >= (d + m))
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+                        }
+                        else if (indexes.J - 1 <= m)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
 
-                if (indexNullI[indNull] + 1 <= (n + d))
-                {
-                    if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1 < minInd)
+                        }
+                        else
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+                        }
+
+                    }
+
+                    if (indexes.I - 1 <= d)
                     {
-                        minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index1;
-                        indI = indexNullI[indNull] + 1;
-                        indJ = indexNullJ[indNull];
+                        if (indexes.J + 1 >= (d + m))
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J }
+                            };
+                        }
+                        else if (indexes.J - 1 <= m)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J }
+                            };
+
+                        }
+                        else
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J }
+                            };
+                        }
+
+                    }
+
+                    if (indexes.I - 1 >= d && indexes.I + 1 <= n + d)
+                    {
+
+                        if (indexes.J + 1 >= (d + m))
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+                        }
+                        else if (indexes.J - 1 <= m)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+
+                        }
+                        else
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+                        }
+                    }
+
+                    int indI = -1;
+                    int indJ = -1;
+
+                    int minInd = int.MaxValue;
+
+                    foreach (IndexItem item in arr)
+                    {
+                        if (item.Item.Index2 <= minInd && item.Item.Value == 0 && item.Item.Value != -1)
+                        {
+                            minInd = item.Item.Index2;
+                            indI = item.I;
+                            indJ = item.J;
+                        }
+                    }
+
+                    if (indI >= 0 && indJ >= 0)
+                    {
+                        C[indI, indJ].Value = -1;
                     }
                 }
-                if (indexNullI[indNull] - 1 >= 0)
-                {
-                    if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1 < minInd)
-                    {
-                        minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index1;
-                        indI = indexNullI[indNull] - 1;
-                        indJ = indexNullJ[indNull];
-                    }
-                }
-                C[indI, indJ].Value = -1;
                 s++;
-                indNull++;
+
             }
-
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
             PrintPlan();
             printZ();
@@ -1237,10 +1372,6 @@ namespace TranZadTwoIA
                     {
                         C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value = 0;
                     }
-                    else
-                    {
-                        C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value -= nMin;
-                    }
                     //+Q
                     if (C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value == 0)
                     {
@@ -1248,9 +1379,10 @@ namespace TranZadTwoIA
                     }
                     else
                     {
+                        //узнать как должно быть правильно
                         if (C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value == -1)
                         {
-                            C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value += (nMin + 1);
+                            //C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value += (nMin + 1);
                         }
                         else
                         {
@@ -1343,7 +1475,7 @@ namespace TranZadTwoIA
                     {
                         if (C[i, j].Value == -1)
                         {
-                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + ((i>= n && j >= d) ? C[i, j].Index2 : C[i, j].Index1) + "\n" + (C[i, j].Value + 1).ToString();
+                            gridSupport.Rows[i].Cells[j].Value = (C[i, j].Q == "" ? "          " : C[i, j].Q) + "            " + ((i >= n && j >= d) ? C[i, j].Index2 : C[i, j].Index1) + "\n" + (C[i, j].Value + 1).ToString();
                         }
                         else
                         {
