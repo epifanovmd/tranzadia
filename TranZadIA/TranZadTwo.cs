@@ -83,61 +83,200 @@ namespace TranZadTwoIA
 
 
 
-            RowCount.Value = 3;
-            ColumnCount.Value = 3;
-            StoreCount.Value = 3;
+            //RowCount.Value = 3;
+            //ColumnCount.Value = 3;
+            //StoreCount.Value = 3;
 
-            gridA.RowCount = 3;
+            //gridA.RowCount = 3;
+            //gridA.Rows[0].Cells[0].Value = 120;
+            //gridA.Rows[1].Cells[0].Value = 150;
+            //gridA.Rows[2].Cells[0].Value = 170;
+
+
+
+            //gridB.RowCount = 3;
+            //gridB.Rows[0].Cells[0].Value = 110;
+            //gridB.Rows[1].Cells[0].Value = 140;
+            //gridB.Rows[2].Cells[0].Value = 150;
+
+
+
+            //gridD.RowCount = 3;
+            //gridD.Rows[0].Cells[0].Value = 200;
+            //gridD.Rows[1].Cells[0].Value = 250;
+            //gridD.Rows[2].Cells[0].Value = 150;
+
+
+            //gridCBig.RowCount = 3;
+            //gridCBig.ColumnCount = 3;
+            //gridCBig.Rows[0].Cells[0].Value = 7;
+            //gridCBig.Rows[1].Cells[0].Value = 8;
+            //gridCBig.Rows[2].Cells[0].Value = 6;
+
+
+            //gridCBig.Rows[0].Cells[1].Value = 4;
+            //gridCBig.Rows[1].Cells[1].Value = 9;
+            //gridCBig.Rows[2].Cells[1].Value = 5;
+
+            //gridCBig.Rows[0].Cells[2].Value = 8;
+            //gridCBig.Rows[1].Cells[2].Value = 3;
+            //gridCBig.Rows[2].Cells[2].Value = 3;
+
+
+
+            //gridCSmall.RowCount = 3;
+            //gridCSmall.ColumnCount = 3;
+            //gridCSmall.Rows[0].Cells[0].Value = 14;
+            //gridCSmall.Rows[1].Cells[0].Value = 16;
+            //gridCSmall.Rows[2].Cells[0].Value = 10;
+
+
+            //gridCSmall.Rows[0].Cells[1].Value = 17;
+            //gridCSmall.Rows[1].Cells[1].Value = 11;
+            //gridCSmall.Rows[2].Cells[1].Value = 18;
+
+            //gridCSmall.Rows[0].Cells[2].Value = 12;
+            //gridCSmall.Rows[1].Cells[2].Value = 13;
+            //gridCSmall.Rows[2].Cells[2].Value = 15;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            RowCount.Value = 5;
+            ColumnCount.Value = 6;
+            StoreCount.Value = 6;
+
+            gridA.RowCount = 5;
             gridA.Rows[0].Cells[0].Value = 120;
-            gridA.Rows[1].Cells[0].Value = 150;
-            gridA.Rows[2].Cells[0].Value = 170;
+            gridA.Rows[1].Cells[0].Value = 80;
+            gridA.Rows[2].Cells[0].Value = 300;
+            gridA.Rows[3].Cells[0].Value = 250;
+            gridA.Rows[4].Cells[0].Value = 50;
 
 
 
-            gridB.RowCount = 3;
-            gridB.Rows[0].Cells[0].Value = 110;
-            gridB.Rows[1].Cells[0].Value = 140;
-            gridB.Rows[2].Cells[0].Value = 150;
+            gridB.RowCount = 6;
+            gridB.Rows[0].Cells[0].Value = 40;
+            gridB.Rows[1].Cells[0].Value = 160;
+            gridB.Rows[2].Cells[0].Value = 120;
+            gridB.Rows[3].Cells[0].Value = 150;
+            gridB.Rows[4].Cells[0].Value = 130;
+            gridB.Rows[5].Cells[0].Value = 200;
 
 
 
-            gridD.RowCount = 3;
-            gridD.Rows[0].Cells[0].Value = 200;
-            gridD.Rows[1].Cells[0].Value = 250;
-            gridD.Rows[2].Cells[0].Value = 150;
+            gridD.RowCount = 6;
+            gridD.Rows[0].Cells[0].Value = 100;
+            gridD.Rows[1].Cells[0].Value = 30;
+            gridD.Rows[2].Cells[0].Value = 70;
+            gridD.Rows[3].Cells[0].Value = 240;
+            gridD.Rows[4].Cells[0].Value = 160;
+            gridD.Rows[5].Cells[0].Value = 200;
 
 
-            gridCBig.RowCount = 3;
-            gridCBig.ColumnCount = 3;
-            gridCBig.Rows[0].Cells[0].Value = 7;
-            gridCBig.Rows[1].Cells[0].Value = 8;
-            gridCBig.Rows[2].Cells[0].Value = 6;
+            gridCBig.RowCount = 5;
+            gridCBig.ColumnCount = 6;
+            gridCBig.Rows[0].Cells[0].Value = 3;
+            gridCBig.Rows[1].Cells[0].Value = 5;
+            gridCBig.Rows[2].Cells[0].Value = 3;
+            gridCBig.Rows[3].Cells[0].Value = 6;
+            gridCBig.Rows[4].Cells[0].Value = 1;
 
 
-            gridCBig.Rows[0].Cells[1].Value = 4;
-            gridCBig.Rows[1].Cells[1].Value = 9;
-            gridCBig.Rows[2].Cells[1].Value = 5;
+            gridCBig.Rows[0].Cells[1].Value = 5;
+            gridCBig.Rows[1].Cells[1].Value = 6;
+            gridCBig.Rows[2].Cells[1].Value = 1;
+            gridCBig.Rows[3].Cells[1].Value = 1;
+            gridCBig.Rows[4].Cells[1].Value = 3;
 
-            gridCBig.Rows[0].Cells[2].Value = 8;
-            gridCBig.Rows[1].Cells[2].Value = 3;
-            gridCBig.Rows[2].Cells[2].Value = 3;
+            gridCBig.Rows[0].Cells[2].Value = 1;
+            gridCBig.Rows[1].Cells[2].Value = 4;
+            gridCBig.Rows[2].Cells[2].Value = 5;
+            gridCBig.Rows[3].Cells[2].Value = 4;
+            gridCBig.Rows[4].Cells[2].Value = 5;
+        
+            gridCBig.Rows[0].Cells[3].Value = 4;
+            gridCBig.Rows[1].Cells[3].Value = 1;
+            gridCBig.Rows[2].Cells[3].Value = 2;
+            gridCBig.Rows[3].Cells[3].Value = 3;
+            gridCBig.Rows[4].Cells[3].Value = 2;
+
+            gridCBig.Rows[0].Cells[4].Value = 2;
+            gridCBig.Rows[1].Cells[4].Value = 8;
+            gridCBig.Rows[2].Cells[4].Value = 1;
+            gridCBig.Rows[3].Cells[4].Value = 5;
+            gridCBig.Rows[4].Cells[4].Value = 8;
+
+            gridCBig.Rows[0].Cells[5].Value = 3;
+            gridCBig.Rows[1].Cells[5].Value = 3;
+            gridCBig.Rows[2].Cells[5].Value = 3;
+            gridCBig.Rows[3].Cells[5].Value = 2;
+            gridCBig.Rows[4].Cells[5].Value = 4;
 
 
 
-            gridCSmall.RowCount = 3;
-            gridCSmall.ColumnCount = 3;
-            gridCSmall.Rows[0].Cells[0].Value = 14;
-            gridCSmall.Rows[1].Cells[0].Value = 16;
-            gridCSmall.Rows[2].Cells[0].Value = 10;
+            gridCSmall.RowCount = 6;
+            gridCSmall.ColumnCount = 6;
+            gridCSmall.Rows[0].Cells[0].Value = 9;
+            gridCSmall.Rows[1].Cells[0].Value = 1;
+            gridCSmall.Rows[2].Cells[0].Value = 3;
+            gridCSmall.Rows[3].Cells[0].Value = 7;
+            gridCSmall.Rows[4].Cells[0].Value = 2;
+            gridCSmall.Rows[5].Cells[0].Value = 5;
+
+            gridCSmall.Rows[0].Cells[1].Value = 3;
+            gridCSmall.Rows[1].Cells[1].Value = 6;
+            gridCSmall.Rows[2].Cells[1].Value = 5;
+            gridCSmall.Rows[3].Cells[1].Value = 2;
+            gridCSmall.Rows[4].Cells[1].Value = 3;
+            gridCSmall.Rows[5].Cells[1].Value = 3;
+
+            gridCSmall.Rows[0].Cells[2].Value = 4;
+            gridCSmall.Rows[1].Cells[2].Value = 2;
+            gridCSmall.Rows[2].Cells[2].Value = 2;
+            gridCSmall.Rows[3].Cells[2].Value = 5;
+            gridCSmall.Rows[4].Cells[2].Value = 1;
+            gridCSmall.Rows[5].Cells[2].Value = 2;
+
+            gridCSmall.Rows[0].Cells[3].Value = 1;
+            gridCSmall.Rows[1].Cells[3].Value = 5;
+            gridCSmall.Rows[2].Cells[3].Value = 1;
+            gridCSmall.Rows[3].Cells[3].Value = 1;
+            gridCSmall.Rows[4].Cells[3].Value = 4;
+            gridCSmall.Rows[5].Cells[3].Value = 4;
+
+            gridCSmall.Rows[0].Cells[4].Value = 5;
+            gridCSmall.Rows[1].Cells[4].Value = 3;
+            gridCSmall.Rows[2].Cells[4].Value = 3;
+            gridCSmall.Rows[3].Cells[4].Value = 4;
+            gridCSmall.Rows[4].Cells[4].Value = 2;
+            gridCSmall.Rows[5].Cells[4].Value = 1;
+
+            gridCSmall.Rows[0].Cells[5].Value = 2;
+            gridCSmall.Rows[1].Cells[5].Value = 8;
+            gridCSmall.Rows[2].Cells[5].Value = 4;
+            gridCSmall.Rows[3].Cells[5].Value = 6;
+            gridCSmall.Rows[4].Cells[5].Value = 8;
+            gridCSmall.Rows[5].Cells[5].Value = 3;
 
 
-            gridCSmall.Rows[0].Cells[1].Value = 17;
-            gridCSmall.Rows[1].Cells[1].Value = 11;
-            gridCSmall.Rows[2].Cells[1].Value = 18;
 
-            gridCSmall.Rows[0].Cells[2].Value = 12;
-            gridCSmall.Rows[1].Cells[2].Value = 13;
-            gridCSmall.Rows[2].Cells[2].Value = 15;
+
+
 
 
 
@@ -376,10 +515,10 @@ namespace TranZadTwoIA
             gridSupport.TopLeftHeaderCell.Value = "X" + numTable.ToString();
             gridDelta.TopLeftHeaderCell.Value = "X" + numTable.ToString();
 
-            //if (NotOptimal())
-            //{
-            //    numTable++;
-            //}
+            if (NotOptimal())
+            {
+                numTable++;
+            }
 
             //сохраняем значения 
             for (int i = 0; i < n; i++)
@@ -460,7 +599,7 @@ namespace TranZadTwoIA
             //левая верхняя таблица
             for (int i = 0; i < n; i++)
             {
-                for (int j = 0; j < m; j++)
+                for (int j = 0; j < d; j++)
                 {
                     if (C[i, j].Value != 0)
                     {
@@ -933,6 +1072,8 @@ namespace TranZadTwoIA
 
 
             //ложный ноль
+            int indI = -1;
+            int indJ = -1;
 
             IndexItem[] arr = new IndexItem[] { };
             IndexItem itemToRemove = new IndexItem { };
@@ -1028,10 +1169,10 @@ namespace TranZadTwoIA
                         }
                     }
 
-                    int indI = -1;
-                    int indJ = -1;
 
                     int minInd = int.MaxValue;
+                    indI = -1;
+                    indJ = -1;
 
                     foreach (IndexItem item in arr)
                     {
@@ -1055,17 +1196,44 @@ namespace TranZadTwoIA
             int ind = 0;
             int value = 0;
 
+            bool flag = false;
 
-            for (i = 0; i < d; i++)
+            for (i = 0; i < aaStore.Length; i++)
             {
-                if (aaStore[i] != 0)
+                if (aaStore[i] > 0)
                 {
-
-                    ind = i;
-                    value = aaStore[i];
-                    C[i + n, i].Value = aaStore[i];
+                    flag = true;
+                    break;
                 }
+            }
 
+            if (flag)
+            {
+                for (i = 0; i < d; i++)
+                {
+                    if (aaStore[i] != 0)
+                    {
+
+                        ind = i;
+                        value = aaStore[i];
+                        C[i + n, i].Value = aaStore[i];
+                    }
+
+                }
+            }
+            else
+            {
+                for (i = 0; i < d; i++)
+                {
+                    if (i == indJ)
+                    {
+
+                        ind = i;
+                        value = aaStore[i];
+                        C[i + n, i].Value = -1;
+                    }
+
+                }
             }
 
 
@@ -1116,7 +1284,7 @@ namespace TranZadTwoIA
             {
                 for (j = 0; j < d; j++)
                 {
-                    if (i - n == j)
+                    if (C[i, j].Value > 0 && i - n == j)
                     {
                         aaStore[i - n] -= C[i, j].Value;
                     }
@@ -1297,10 +1465,9 @@ namespace TranZadTwoIA
                         }
                     }
 
-                    int indI = -1;
-                    int indJ = -1;
-
                     int minInd = int.MaxValue;
+                    indI = -1;
+                    indJ = -1;
 
                     foreach (IndexItem item in arr)
                     {
@@ -1363,6 +1530,7 @@ namespace TranZadTwoIA
                     nMin = t;
                 }
             }
+            bool needZerro = false;
             for (int w = 1; w < aPath.Count; w += 2)
             {
                 if (nMin == 0)
@@ -1395,10 +1563,14 @@ namespace TranZadTwoIA
                     //-Q
                     C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value -= nMin;
 
-                    //if (C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value == 0)
-                    //{
-                    //    C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value = -1;
-                    //}
+                    if (C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value == 0)
+                    {
+                        if (needZerro)
+                        {
+                            C[(aPath[w] as int[])[0], (aPath[w] as int[])[1]].Value = -1;
+                        }
+                        needZerro = true;
+                    }
                     //+Q
                     if (C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value == -1)
                         C[(aPath[w - 1] as int[])[0], (aPath[w - 1] as int[])[1]].Value += (nMin + 1);
@@ -1573,6 +1745,34 @@ namespace TranZadTwoIA
         }
         private void tabControl1_Selecting(object sender, TabControlCancelEventArgs e)
         {
+            int sumA = 0, sumB = 0, sumD = 0, sum = 0;
+
+            for (int i = 0; i < n; i++)
+            {
+                sumA += Convert.ToInt32(gridA.Rows[i].Cells[0].Value);
+            }
+            for (int j = 0; j < m; j++)
+            {
+                sumB += Convert.ToInt32(gridB.Rows[j].Cells[0].Value);
+            }
+
+            for (int j = 0; j < d; j++)
+            {
+                sumD += Convert.ToInt32(gridD.Rows[j].Cells[0].Value);
+            }
+            if (sumA > sumB)
+            {
+                sum = sumA;
+            }
+            else sum = sumB;
+            
+
+            if (sumD < sum  )
+            {
+                e.Cancel = true;
+                MessageBox.Show("Склады должны быть больше поставщиков и потребителей.", "Ошибка");
+                return;
+            }
             if (e.TabPageIndex == 1)
                 ModelType(null, null);
         }
@@ -1820,6 +2020,19 @@ namespace TranZadTwoIA
         {
             Form training = new TrainingForm();
             training.ShowDialog();
+        }
+
+        private void TranZadTwo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы действительно хотите завершить работу?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

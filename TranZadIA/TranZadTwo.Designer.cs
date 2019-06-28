@@ -58,11 +58,12 @@
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.btnModelType = new System.Windows.Forms.Button();
             this.lblModelType = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.gridCSmall = new System.Windows.Forms.DataGridView();
             this.gridCBig = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.StoreCount = new System.Windows.Forms.NumericUpDown();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.gridDelta = new System.Windows.Forms.DataGridView();
@@ -83,7 +84,6 @@
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тренажерТЗToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.StoreCount = new System.Windows.Forms.NumericUpDown();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -96,6 +96,7 @@
             this.tableLayoutPanel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCSmall)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCBig)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StoreCount)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridDelta)).BeginInit();
@@ -104,7 +105,6 @@
             this.tableLayoutPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridSupport)).BeginInit();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.StoreCount)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -355,15 +355,6 @@
             this.lblModelType.TabIndex = 1;
             this.lblModelType.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(343, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 16);
-            this.label1.TabIndex = 18;
-            this.label1.Text = "Количество складов";
-            // 
             // tableLayoutPanel7
             // 
             this.tableLayoutPanel7.ColumnCount = 1;
@@ -459,6 +450,28 @@
             this.label2.TabIndex = 7;
             this.label2.Text = "Тарифы";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(343, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 16);
+            this.label1.TabIndex = 18;
+            this.label1.Text = "Количество складов";
+            // 
+            // StoreCount
+            // 
+            this.StoreCount.Location = new System.Drawing.Point(343, 35);
+            this.StoreCount.Name = "StoreCount";
+            this.StoreCount.Size = new System.Drawing.Size(154, 22);
+            this.StoreCount.TabIndex = 2;
+            this.StoreCount.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.StoreCount.ValueChanged += new System.EventHandler(this.RowColCount_ValueChanged);
             // 
             // tabPage2
             // 
@@ -734,6 +747,7 @@
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.White;
+            this.menuStrip1.Enabled = false;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.справкаToolStripMenuItem});
@@ -764,19 +778,6 @@
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.справкаToolStripMenuItem.Text = "Справка";
             // 
-            // StoreCount
-            // 
-            this.StoreCount.Location = new System.Drawing.Point(343, 35);
-            this.StoreCount.Name = "StoreCount";
-            this.StoreCount.Size = new System.Drawing.Size(154, 22);
-            this.StoreCount.TabIndex = 2;
-            this.StoreCount.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.StoreCount.ValueChanged += new System.EventHandler(this.RowColCount_ValueChanged);
-            // 
             // TranZadTwo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -787,7 +788,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "TranZadTwo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Решение Двухэтапной Транспортной Задачи";
+            this.Text = "Двухэтапная транспортная задача";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TranZadTwo_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -803,6 +805,7 @@
             this.tableLayoutPanel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridCSmall)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridCBig)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.StoreCount)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
@@ -814,7 +817,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridSupport)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.StoreCount)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

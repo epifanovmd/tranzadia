@@ -75,8 +75,8 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.тренажерТЗToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.двухэтапнаяToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -656,22 +656,22 @@
             // тренажерТЗToolStripMenuItem
             // 
             this.тренажерТЗToolStripMenuItem.Name = "тренажерТЗToolStripMenuItem";
-            this.тренажерТЗToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.тренажерТЗToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
             this.тренажерТЗToolStripMenuItem.Text = "Тренажер ТЗ";
             this.тренажерТЗToolStripMenuItem.Click += new System.EventHandler(this.тренажерТЗToolStripMenuItem_Click);
+            // 
+            // двухэтапнаяToolStripMenuItem
+            // 
+            this.двухэтапнаяToolStripMenuItem.Name = "двухэтапнаяToolStripMenuItem";
+            this.двухэтапнаяToolStripMenuItem.Size = new System.Drawing.Size(146, 22);
+            this.двухэтапнаяToolStripMenuItem.Text = "Двухэтапная";
+            this.двухэтапнаяToolStripMenuItem.Click += new System.EventHandler(this.двухэтапнаяToolStripMenuItem_Click);
             // 
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
             this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.справкаToolStripMenuItem.Text = "Справка";
-            // 
-            // двухэтапнаяToolStripMenuItem
-            // 
-            this.двухэтапнаяToolStripMenuItem.Name = "двухэтапнаяToolStripMenuItem";
-            this.двухэтапнаяToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.двухэтапнаяToolStripMenuItem.Text = "Двухэтапная";
-            this.двухэтапнаяToolStripMenuItem.Click += new System.EventHandler(this.двухэтапнаяToolStripMenuItem_Click);
             // 
             // TranZad
             // 
@@ -684,6 +684,7 @@
             this.Name = "TranZad";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Решение Транспортной Задачи";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TranZad_FormClosing);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);

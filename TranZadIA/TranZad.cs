@@ -1107,5 +1107,18 @@ namespace TranZadIA
             Form tranzadtwo = new TranZadTwo();
             tranzadtwo.ShowDialog();
         }
+
+        private void TranZad_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы действительно хотите завершить работу?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

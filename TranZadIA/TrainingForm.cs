@@ -74,6 +74,17 @@ namespace TranZadIA
                     return a;
             }
         }
+        public struct Index
+        {
+            public int I { get; set; }
+            public int J { get; set; }
+        }
+        public struct IndexItem
+        {
+            public Element Item { get; set; }
+            public int I { get; set; }
+            public int J { get; set; }
+        }
         struct El
         {
             public int IndexI;
@@ -146,7 +157,7 @@ namespace TranZadIA
                     try
                     {
                         if (
-                             (gridSupport.Rows[i].Cells[j].Value.ToString() == "--") ? 0 != C[i, j].Value : gridSupport.Rows[i].Cells[j].Value.ToString() != C[i, j].Value.ToString())
+                             (gridSupport.Rows[i].Cells[j].Value.ToString() == "--") ? 0 != C[i, j].Value : (gridSupport.Rows[i].Cells[j].Value.ToString() == 0.ToString()) ? -1 != C[i, j].Value : gridSupport.Rows[i].Cells[j].Value.ToString() != C[i, j].Value.ToString())
                         {
                             gridSupport.Rows[i].Cells[j].Style.BackColor = Color.Yellow;
                             lblOptPlan.Visible = false;
@@ -783,6 +794,7 @@ namespace TranZadIA
         }
         private void MetodMinElement()
         {
+            List<Index> indexesFalseTable = new List<Index>();
             int[] indexNullI = new int[m * n];
             int[] indexNullJ = new int[m * n];
             gridDelta.RowCount = 0;
@@ -792,7 +804,6 @@ namespace TranZadIA
             PivotM = -1;
             int i = 0;
             int j = 0;
-            int indNull = 0;
 
             //сохраняем значения 
             for (i = 0; i < aSupply.Length; i++)
@@ -846,9 +857,7 @@ namespace TranZadIA
 
                     if ((aSupply[CC[l].IndexI] - minEl == 0 && aDemand[CC[l].IndexJ] - minEl == 0) && (aSupply[CC[l].IndexI] != 0 && aDemand[CC[l].IndexJ] != 0))
                     {
-                        indexNullI[indNull] = CC[l].IndexI;
-                        indexNullJ[indNull] = CC[l].IndexJ;
-                        indNull++;
+                        indexesFalseTable.Add(new Index { I = CC[l].IndexI, J = CC[l].IndexJ });
                     }
 
                     aSupply[CC[l].IndexI] -= minEl;
@@ -883,53 +892,124 @@ namespace TranZadIA
                     }
                 }
             }
-            indNull = 0;
-            while (s < n + m - 1)
+            //ложный ноль
+
+            IndexItem[] arr = new IndexItem[] { };
+            IndexItem itemToRemove = new IndexItem { };
+
+            foreach (Index indexes in indexesFalseTable)
             {
-                int minInd = int.MaxValue;
-                int indI = 0;
-                int indJ = 0;
+                if (s < n + m - 1)
+                {
 
-                if (indexNullJ[indNull] + 1 <= m)
-                {
-                    if (C[indexNullI[indNull], indexNullJ[indNull] + 1].Index < minInd)
+                    if (indexes.I + 1 >= n)
                     {
-                        minInd = C[indexNullI[indNull], indexNullJ[indNull] + 1].Index;
-                        indI = indexNullI[indNull];
-                        indJ = indexNullJ[indNull] + 1;
-                    }
-                }
-                if (indexNullJ[indNull] - 1 >= 0)
-                {
-                    if (C[indexNullI[indNull], indexNullJ[indNull] - 1].Index < minInd)
-                    {
-                        minInd = C[indexNullI[indNull], indexNullJ[indNull] - 1].Index;
-                        indI = indexNullI[indNull];
-                        indJ = indexNullJ[indNull] - 1;
-                    }
-                }
+                        if (indexes.J + 1 >= m)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+                        }
+                        else if (indexes.J - 1 <= 0)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
 
-                if (indexNullI[indNull] + 1 <= n)
-                {
-                    if (C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index < minInd)
+                        }
+                        else
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                            };
+                        }
+
+                    }
+
+                    if (indexes.I - 1 <= 0)
                     {
-                        minInd = C[indexNullI[indNull] + 1, indexNullJ[indNull]].Index;
-                        indI = indexNullI[indNull] + 1;
-                        indJ = indexNullJ[indNull];
+                        if (indexes.J + 1 >= m)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J }
+                            };
+                        }
+                        else if (indexes.J - 1 <= 0)
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J }
+                            };
+
+                        }
+                        else
+                        {
+                            arr = new IndexItem[] {
+                            new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                            new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                            new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J }
+                            };
+                        }
+
+                    }
+                    if (indexes.I - 1 >= 0 && indexes.I + 1 <= n)
+                    {
+
+                        if (indexes.J + 1 >= m)
+                        {
+                            arr = new IndexItem[] {
+                        new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                        new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J },
+                        new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                        };
+                        }
+                        else if (indexes.J - 1 <= 0)
+                        {
+                            arr = new IndexItem[] {
+                        new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                        new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J },
+                        new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                        };
+
+                        }
+                        else
+                        {
+                            arr = new IndexItem[] {
+                        new IndexItem { Item = C[indexes.I, indexes.J + 1], I = indexes.I, J = indexes.J + 1 },
+                        new IndexItem { Item = C[indexes.I, indexes.J - 1], I = indexes.I, J = indexes.J - 1 },
+                        new IndexItem { Item = C[indexes.I + 1, indexes.J], I = indexes.I + 1, J = indexes.J },
+                        new IndexItem { Item = C[indexes.I - 1, indexes.J], I = indexes.I - 1, J = indexes.J }
+                        };
+                        }
+                    }
+
+                    int indI = -1;
+                    int indJ = -1;
+
+                    int minInd = int.MaxValue;
+
+                    foreach (IndexItem item in arr)
+                    {
+                        if (item.Item.Index <= minInd && item.Item.Value == 0 && item.Item.Value != -1)
+                        {
+                            minInd = item.Item.Index;
+                            indI = item.I;
+                            indJ = item.J;
+                        }
+                    }
+
+                    if (indI >= 0 && indJ >= 0)
+                    {
+                        C[indI, indJ].Value = -1;
                     }
                 }
-                if (indexNullI[indNull] - 1 >= 0)
-                {
-                    if (C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index < minInd)
-                    {
-                        minInd = C[indexNullI[indNull] - 1, indexNullJ[indNull]].Index;
-                        indI = indexNullI[indNull] - 1;
-                        indJ = indexNullJ[indNull];
-                    }
-                }
-                C[indI, indJ].Value = -1;
                 s++;
-                indNull++;
+
             }
             //PrintPlan();
             //printZ();
@@ -1213,6 +1293,19 @@ namespace TranZadIA
                 MetodMinElement();
             }
             solveTZ();
+        }
+
+        private void TrainingForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Вы действительно хотите завершить работу?", "Внимание", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //do something
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }
